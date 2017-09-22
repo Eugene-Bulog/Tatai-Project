@@ -29,4 +29,18 @@ public class NumberList {
 		
 	}
 	
+	/**
+	 * Generates a 10-number question pool using numbers from 1-99
+	 */
+	public static void generateHard() {
+		
+		// Clear to ensure _numbers doesn't have any pre-existing members
+		_numbers.clear();
+		
+		// Pushes a random number from 1-99 into the stack
+		for (int i = 0; i < 10; i++) {
+			_numbers.push(new java.util.Random().nextInt(99) + 1);
+		}
+	}
+	
 }

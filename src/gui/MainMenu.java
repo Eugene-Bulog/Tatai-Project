@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import utility.NumberList;
 
 public class MainMenu extends VBox {
 
@@ -43,6 +44,11 @@ public class MainMenu extends VBox {
 
 			@Override
 			public void handle(ActionEvent e) {
+				
+				// Generate a list of easy questions
+				NumberList.generateEasy();
+				
+				// Move to the question scene
 				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
@@ -53,6 +59,10 @@ public class MainMenu extends VBox {
 
 			@Override
 			public void handle(ActionEvent e) {
+				// Generate a list of hard questions
+				NumberList.generateHard();
+				
+				// Move to the question scene
 				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
