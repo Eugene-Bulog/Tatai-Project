@@ -8,6 +8,8 @@ public class App extends Application{
 	
 	// The main stage of the application
 	private static Stage _mainStage;
+	public static final int APP_WIDTH = 800;
+	public static final int APP_HEIGHT = 600;
 	
 	/**
 	 * Getter method for the main stage of the application
@@ -30,7 +32,7 @@ public class App extends Application{
 		
 		// Set up main stage title and initial pane
 		_mainStage.setTitle("Tātai! Practice Module");
-		_mainStage.setScene(new Scene(new MainMenu(), 800,600));
+		_mainStage.setScene(new Scene(new MainMenu(), APP_WIDTH,APP_HEIGHT));
 		
 		// Make the stage visible
 		_mainStage.show();

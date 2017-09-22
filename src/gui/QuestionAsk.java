@@ -1,5 +1,7 @@
 package gui;
 
-public class QuestionAsk {
+import javafx.scene.layout.VBox;
+
+public class QuestionAsk extends VBox{
 
 }
