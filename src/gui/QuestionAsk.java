@@ -71,11 +71,9 @@ public class QuestionAsk extends VBox{
 			public void handle(ActionEvent e) {
 				switch (new java.util.Random().nextInt(2)) {
 				case 0:
-					NumberList.logAnswer(_number, true);
 					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
 					break;
 				case 1:
-					NumberList.logAnswer(_number, false);
 					App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
 					break;
 				}

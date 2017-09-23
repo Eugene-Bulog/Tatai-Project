@@ -1,12 +1,14 @@
 package utility;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class NumberList {
 	
 	private static Stack<Integer> _numbers = new Stack<Integer>();
-	private static LinkedHashMap<Integer,Boolean> _questionLog = new LinkedHashMap<Integer,Boolean>();
+	private static List<Integer> _questionLog = new ArrayList<Integer>();
+	private static List<Boolean> _answerLog = new ArrayList<Boolean>();
 	
 	/**
 	 * Method for returning the next number from the question pool
@@ -64,7 +66,30 @@ public class NumberList {
 	 * @param correct: whether the answer is true or not
 	 */
 	public static void logAnswer(int question, boolean correct) {
-		_questionLog.put(question, correct);
+		_questionLog.add(question);
+		_answerLog.add(correct);
 	}
 	
+	/**
+	 * Gets the number asked at the specified question
+	 * @param pos: the index of the question asked
+	 * @return: the number asked at that index
+	 */
+	public static int getNumberAt(int pos) {
+		return _questionLog.get(pos);
+	}
+	
+	/**
+	 * Gets the users answer to the specified question
+	 * @param pos: the index of the question asked
+	 * @return: the user's answer to the question
+	 */
+	public static String getAnswerAt(int pos) {
+		if (_answerLog.get(pos)) {
+			return "Correct";
+		}
+		else {
+			return "Incorrect";
+		}
+	}
 }
