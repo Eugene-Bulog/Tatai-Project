@@ -1,5 +1,7 @@
 package gui;
 
-public class Summary {
+import javafx.scene.layout.VBox;
+
+public class Summary extends VBox{
 
 }
