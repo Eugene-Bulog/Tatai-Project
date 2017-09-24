@@ -48,7 +48,6 @@ public class NumberList {
 		for (int i = 0; i < 10; i++) {
 			_numbers.push(new java.util.Random().nextInt(9) + 1);
 		}
-		
 	}
 	
 	/**

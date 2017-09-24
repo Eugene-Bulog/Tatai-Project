@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -13,11 +14,21 @@ public class MainMenu extends VBox {
 	// Initialize buttons
 	private final Button EASY_BUTTON;
 	private final Button HARD_BUTTON;
+	private final Label TITLE;
+	private final Label SUBTITLE;
+	
 	
 	/**
 	 * Constructor for MainMenu VBox object, sets up the layout and functions of this view
 	 */
 	public MainMenu() {
+		// Set up title
+		TITLE = new Label("TATAI!");
+		TITLE.setFont(App.getMaoriFont());
+		SUBTITLE = new Label("Number Practice Module");
+		SUBTITLE.setScaleX(1.5);
+		SUBTITLE.setScaleY(1.5);
+		
 		// Set up buttons
 		EASY_BUTTON = new Button("Practise 1-9");
 		HARD_BUTTON = new Button("Practise 1-99");
@@ -29,8 +40,10 @@ public class MainMenu extends VBox {
 		
 		// Set up Vbox and add children
 		setAlignment(Pos.CENTER);
-		setSpacing(80);
 		
+		setSpacing(40);
+		getChildren().add(TITLE);
+		getChildren().add(SUBTITLE);
 		getChildren().add(EASY_BUTTON);
 		getChildren().add(HARD_BUTTON);
 	}

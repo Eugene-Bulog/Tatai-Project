@@ -45,6 +45,7 @@ public class QuestionAsk extends VBox{
 	private void setUpGUI() {
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));
+			_numberLabel.setFont(App.getMaoriFont());
 
 			// Set up record button
 			_recordButton = new Button("Record Answer");

@@ -14,6 +14,7 @@ public class QuestionResult extends VBox{
 	private int _number;
 	private Button _button;
 	private Label _numberLabel;
+	private Label _resultLabel;
 	private boolean _secondAttempt;
 	private boolean _correct;
 	
@@ -23,7 +24,19 @@ public class QuestionResult extends VBox{
 		_correct = correct;
 		
 		// Sets the label to the question value
-		_numberLabel = new Label(Integer.toString(_number) +" " + correct);
+		_numberLabel = new Label(Integer.toString(_number));
+		_numberLabel.setFont(App.getMaoriFont());
+		if (correct) {
+			_resultLabel = new Label("Correct!");
+		} else {
+			if (secondAttempt) {
+				_resultLabel = new Label("Incorrect! You said PLACEHOLDER,\nbut the answer was PLACEHOLDER");
+			} else {
+				_resultLabel = new Label("Incorrect! Try again!");
+			}
+		}
+		_resultLabel.setScaleX(2);
+		_resultLabel.setScaleY(2);
 
 		// Set up record button
 		if (!secondAttempt && !correct) {
@@ -38,9 +51,10 @@ public class QuestionResult extends VBox{
 		
 		// Set up Vbox and add children
 		setAlignment(Pos.CENTER);
-		setSpacing(80);
+		setSpacing(40);
 
 		getChildren().add(_numberLabel);
+		getChildren().add(_resultLabel);
 		getChildren().add(_button);
 		
 	}
