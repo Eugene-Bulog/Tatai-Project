@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -30,6 +32,8 @@ public class Summary extends VBox{
 	 */
 	public Summary() {
 		
+		this.setBackground(new Background(App.getPatternBackground()));
+		
 		// Adds each question and answer to the list
 		for (int i = 0; i < 10; i++) {
 			_questions.add(NumberList.getNumberAt(i) + ": " + 
@@ -38,12 +42,21 @@ public class Summary extends VBox{
 		
 		// Adds the ObservableList to the ListView
 		_answerList.setItems(_questions);
+		_answerList.setPrefHeight(232);
 		
+		// Set up score label
 		_score = new Label("Score: " + NumberList.getSessionScore() + "/10");
+		_score.setFont(App.getRegFont());
+		_score.setScaleX(2.5);
+		_score.setScaleY(2.5);
 		
+		// Set up buttons
 		_mainMenu = new Button("Main Menu");
 		_nextLevel = new Button("Next Level");
 		_playAgain = new Button("Play Again");
+		_mainMenu.setFont(App.getRegFont());
+		_nextLevel.setFont(App.getRegFont());
+		_playAgain.setFont(App.getRegFont());
 		_playAgain.setScaleX(2);
 		_playAgain.setScaleY(2);
 		_mainMenu.setScaleX(2);
@@ -52,12 +65,17 @@ public class Summary extends VBox{
 		_nextLevel.setScaleY(2);
 		setUpActions();
 		
+		setSpacing(40);
+		this.setAlignment(Pos.CENTER);
+		
+		
 		// Adds the components to the VBox
 		getChildren().add(_score);
 		getChildren().add(_answerList);
 		getChildren().add(_playAgain);
 		getChildren().add(_mainMenu);
 		
+		// Only offers next level if score is 8 or more, and playing on easy
 		if (NumberList.getSessionScore() >= 8 && !NumberList.isHard()) {
 			getChildren().add(_nextLevel);
 		}

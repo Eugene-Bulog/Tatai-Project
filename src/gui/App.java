@@ -22,6 +22,7 @@ public class App extends Application{
 	public static final int APP_HEIGHT = 600;
 	
 	private static Font _maoriFont;
+	private static Font _regularFont;
 	private static BackgroundImage _patternBackground;
 	
 	/**
@@ -43,9 +44,10 @@ public class App extends Application{
 	public void start(Stage mainStage) throws Exception {
 		_mainStage = mainStage;
 		_maoriFont = Font.loadFont(this.getClass().getResource("ldj_maori.ttf").toExternalForm(), 110);
+		_regularFont = Font.loadFont(this.getClass().getResource("MyriadPro-Regular.ttf").toExternalForm(), 14);
 		_patternBackground = new BackgroundImage(new Image(this.getClass().getResource("maoripattern.png").toExternalForm()
-				,454,378,true,true), BackgroundRepeat.REPEAT, 
-		        BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
+				,2000,477,true,true), BackgroundRepeat.REPEAT, 
+		        BackgroundRepeat.REPEAT, BackgroundPosition.CENTER,
 		          BackgroundSize.DEFAULT);
 		
 		// Set up main stage title and initial pane
@@ -63,6 +65,15 @@ public class App extends Application{
 	 */
 	public static Font getMaoriFont() {
 		return _maoriFont;
+	}
+	
+	/**
+	 * Getter method for the main "regular font" to be used throughout the app.
+	 * Size 220, font name MyriadPro-Regular.ttf
+	 * @return the font object representing this font
+	 */
+	public static Font getRegFont() {
+		return _regularFont;
 	}
 	
 	/**

@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -43,14 +44,17 @@ public class QuestionAsk extends VBox{
 	}
 
 	private void setUpGUI() {
+			this.setBackground(new Background(App.getPatternBackground()));
+		
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));
 			_numberLabel.setFont(App.getMaoriFont());
-
+			
 			// Set up record button
 			_recordButton = new Button("Record Answer");
 			_recordButton.setScaleX(2);
 			_recordButton.setScaleY(2);
+			_recordButton.setFont(App.getRegFont());
 			setUpAction();
 			
 			// Set up Vbox and add children

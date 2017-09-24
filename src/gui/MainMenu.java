@@ -33,14 +33,17 @@ public class MainMenu extends VBox {
 		SUBTITLE = new Label("Number Practice Module");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
+		SUBTITLE.setFont(App.getRegFont());
 		
 		// Set up buttons
-		EASY_BUTTON = new Button("Practise 1-9");
-		HARD_BUTTON = new Button("Practise 1-99");
+		EASY_BUTTON = new Button("Practice 1-9");
+		HARD_BUTTON = new Button("Practice 1-99");
 		EASY_BUTTON.setScaleX(2);
 		EASY_BUTTON.setScaleY(2);
 		HARD_BUTTON.setScaleX(2);
 		HARD_BUTTON.setScaleY(2);
+		EASY_BUTTON.setFont(App.getRegFont());
+		HARD_BUTTON.setFont(App.getRegFont());
 		setUpActions(); 
 		
 		// Set up Vbox and add children

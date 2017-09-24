@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -19,6 +20,8 @@ public class QuestionResult extends VBox{
 	private boolean _correct;
 	
 	public QuestionResult(boolean correct,boolean secondAttempt, int number) {
+		
+		this.setBackground(new Background(App.getPatternBackground()));
 		_number = number;
 		_secondAttempt = secondAttempt;
 		_correct = correct;
@@ -35,6 +38,7 @@ public class QuestionResult extends VBox{
 				_resultLabel = new Label("Incorrect! Try again!");
 			}
 		}
+		_resultLabel.setFont(App.getRegFont());
 		_resultLabel.setScaleX(2);
 		_resultLabel.setScaleY(2);
 
@@ -45,6 +49,7 @@ public class QuestionResult extends VBox{
 		else {
 			_button = new Button("Continue");
 		}
+		_button.setFont(App.getRegFont());
 		_button.setScaleX(2);
 		_button.setScaleY(2);
 		setUpAction();
