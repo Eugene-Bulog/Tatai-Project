@@ -5,6 +5,11 @@ package gui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -17,6 +22,7 @@ public class App extends Application{
 	public static final int APP_HEIGHT = 600;
 	
 	private static Font _maoriFont;
+	private static BackgroundImage _patternBackground;
 	
 	/**
 	 * Getter method for the main stage of the application
@@ -37,6 +43,10 @@ public class App extends Application{
 	public void start(Stage mainStage) throws Exception {
 		_mainStage = mainStage;
 		_maoriFont = Font.loadFont(this.getClass().getResource("ldj_maori.ttf").toExternalForm(), 110);
+		_patternBackground = new BackgroundImage(new Image(this.getClass().getResource("maoripattern.png").toExternalForm()
+				,454,378,true,true), BackgroundRepeat.REPEAT, 
+		        BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
+		          BackgroundSize.DEFAULT);
 		
 		// Set up main stage title and initial pane
 		_mainStage.setTitle("TĀTAI! Practice Module");
@@ -53,6 +63,14 @@ public class App extends Application{
 	 */
 	public static Font getMaoriFont() {
 		return _maoriFont;
+	}
+	
+	/**
+	 * Getter method for the main background to be used throughout the app
+	 * @return the BackgroundImage object representing this image
+	 */
+	public static BackgroundImage getPatternBackground() {
+		return _patternBackground;
 	}
 
 }

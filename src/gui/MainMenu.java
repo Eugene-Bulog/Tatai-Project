@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -22,6 +23,10 @@ public class MainMenu extends VBox {
 	 * Constructor for MainMenu VBox object, sets up the layout and functions of this view
 	 */
 	public MainMenu() {
+		
+		// Set up background image
+		this.setBackground(new Background(App.getPatternBackground()));
+		
 		// Set up title
 		TITLE = new Label("TATAI!");
 		TITLE.setFont(App.getMaoriFont());
