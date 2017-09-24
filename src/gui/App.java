@@ -31,7 +31,7 @@ public class App extends Application{
 		_mainStage = mainStage;
 		
 		// Set up main stage title and initial pane
-		_mainStage.setTitle("Tātai! Practice Module");
+		_mainStage.setTitle("Tatai! Practice Module");
 		_mainStage.setScene(new Scene(new MainMenu(), APP_WIDTH,APP_HEIGHT));
 		
 		// Make the stage visible

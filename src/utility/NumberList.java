@@ -9,6 +9,7 @@ public class NumberList {
 	private static Stack<Integer> _numbers = new Stack<Integer>();
 	private static List<Integer> _questionLog = new ArrayList<Integer>();
 	private static List<Boolean> _answerLog = new ArrayList<Boolean>();
+	private static boolean _hardMode = false;
 	
 	/**
 	 * Method for returning the next number from the question pool
@@ -36,8 +37,12 @@ public class NumberList {
 	 */
 	public static void generateEasy() {
 		
-		// Clear to ensure _numbers doesn't have any pre-existing members
+		_hardMode = false;
+		
+		// Clear to ensure _numbers & logs don't have any pre-existing members
 		_numbers.clear();
+		_answerLog.clear();
+		_questionLog.clear();
 		
 		// Pushes a random number from 1-9 into the stack
 		for (int i = 0; i < 10; i++) {
@@ -51,8 +56,12 @@ public class NumberList {
 	 */
 	public static void generateHard() {
 		
+		_hardMode = true;
+		
 		// Clear to ensure _numbers doesn't have any pre-existing members
 		_numbers.clear();
+		_answerLog.clear();
+		_questionLog.clear();
 		
 		// Pushes a random number from 1-99 into the stack
 		for (int i = 0; i < 10; i++) {
@@ -91,5 +100,29 @@ public class NumberList {
 		else {
 			return "Incorrect";
 		}
+	}
+	
+	/**
+	 * Gets the score of this session
+	 * @return: a count of the number of questions answered correctly
+	 */
+	public static int getSessionScore() {
+		int count = 0;
+		for (boolean answer: _answerLog) {
+			if (answer) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
+	
+	/**
+	 * Getter for whether the application is in hard mode or not
+	 * Returns true if in hard mode, false otherwise
+	 */
+	public static boolean isHard() {
+		return _hardMode;
 	}
 }
