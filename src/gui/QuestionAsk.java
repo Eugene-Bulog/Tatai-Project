@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -44,7 +43,7 @@ public class QuestionAsk extends VBox{
 	}
 
 	private void setUpGUI() {
-			this.setBackground(new Background(App.getPatternBackground()));
+			setBackground(App.getPatternBackground());
 		
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));

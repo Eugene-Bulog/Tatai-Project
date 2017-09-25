@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -32,7 +31,7 @@ public class Summary extends VBox{
 	 */
 	public Summary() {
 		
-		this.setBackground(new Background(App.getPatternBackground()));
+		setBackground(App.getPatternBackground());
 		
 		// Adds each question and answer to the list
 		for (int i = 0; i < 10; i++) {
@@ -119,4 +118,7 @@ public class Summary extends VBox{
 			}
 		});
 	}
+	
+	
+	
 }

@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import utility.NumberList;
 
@@ -25,7 +24,7 @@ public class MainMenu extends VBox {
 	public MainMenu() {
 		
 		// Set up background image
-		this.setBackground(new Background(App.getPatternBackground()));
+		setBackground(App.getPatternBackground());
 		
 		// Set up title
 		TITLE = new Label("TATAI!");
@@ -54,6 +53,7 @@ public class MainMenu extends VBox {
 		getChildren().add(SUBTITLE);
 		getChildren().add(EASY_BUTTON);
 		getChildren().add(HARD_BUTTON);
+		
 	}
 	
 	/**
