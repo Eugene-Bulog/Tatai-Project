@@ -48,8 +48,9 @@ public class App extends Application{
 		_mainStage = mainStage;
 		loadAssets();
 		
-		// Set up main stage title and initial pane
+		// Set up main stage title
 		_mainStage.setTitle("TĀTAI! Practice Module");
+		_mainStage.setResizable(false);
 		
 		
 		

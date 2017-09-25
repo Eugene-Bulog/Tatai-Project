@@ -2,11 +2,13 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import utility.NumberList;
 
 public class MainMenu extends VBox {
@@ -29,6 +31,8 @@ public class MainMenu extends VBox {
 		// Set up title
 		TITLE = new Label("TATAI!");
 		TITLE.setFont(App.getMaoriFont());
+		TITLE.setTextFill(Color.web("#964B00"));
+		TITLE.setPadding(new Insets(0, 0, -40, 0));
 		SUBTITLE = new Label("Number Practice Module");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);

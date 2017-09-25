@@ -2,6 +2,7 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,15 +28,16 @@ public class Summary extends VBox{
 	 */
 	public Summary() {
 		
+		// set the background
 		setBackground(App.getPatternBackground());
 		
 		_summaryBox = new SummaryBox();
 		
 		// Set up score label
-		_score = new Label("Score: " + NumberList.getSessionScore() + "/10");
-		_score.setFont(App.getRegFont());
-		_score.setScaleX(2.5);
-		_score.setScaleY(2.5);
+		_score = new Label(NumberList.getSessionScore() + "/10");
+		_score.setFont(App.getMaoriFont());
+		_score.setTextFill(Color.web("#964B00"));
+		_score.setPadding(new Insets(0, 0, -50, 0));
 		
 		// Set up buttons
 		_mainMenu = new Button("Main Menu");
@@ -112,24 +114,42 @@ public class Summary extends VBox{
 	
 	private class SummaryBox extends VBox {
 		
+		// An array of labels which will display the questions and results
 		private Label[] _labels;
 		
+		/**
+		 * Constructor for summarybox, does all of the GUI setup required
+		 */
 		public SummaryBox() {
 			
+			// Set center alignment
 			setAlignment(Pos.CENTER);
+			
+			// Defines _labels
 			_labels = new Label[10];
+			
+			// Loops through each question and alters the appropriate label
 			for (int i = 0; i < 10; i++) {
+				
+				// Sets the label text as the question, followed by if the answer was
+				// right or wrong
 				_labels[i] = new Label(NumberList.getNumberAt(i) + ": " + 
 						NumberList.getAnswerAt(i));
+				
+				// Set scale and font
 				_labels[i].setScaleX(1.5);
 				_labels[i].setScaleY(1.5);
 				_labels[i].setFont(App.getRegFont());
+				
+				// If the answer was Correct, colors the text green, otherwise red
 				if (NumberList.getAnswerAt(i).equals("Correct")) {
 					_labels[i].setTextFill(Color.web("#50B948"));
 				}
 				else {
 					_labels[i].setTextFill(Color.web("#CC0000"));
 				}
+				
+				// adds the labels to the vbox
 				getChildren().add(_labels[i]);
 			}
 		}

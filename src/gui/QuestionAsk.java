@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import utility.NumberList;
 
 public class QuestionAsk extends VBox{
@@ -48,6 +49,7 @@ public class QuestionAsk extends VBox{
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));
 			_numberLabel.setFont(App.getMaoriFont());
+			_numberLabel.setTextFill(Color.web("#964B00"));
 			
 			// Set up record button
 			_recordButton = new Button("Record Answer");

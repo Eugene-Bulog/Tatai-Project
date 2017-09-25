@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import utility.NumberList;
 
 public class QuestionResult extends VBox{
@@ -28,6 +29,7 @@ public class QuestionResult extends VBox{
 		// Sets the label to the question value
 		_numberLabel = new Label(Integer.toString(_number));
 		_numberLabel.setFont(App.getMaoriFont());
+		_numberLabel.setTextFill(Color.web("#964B00"));
 		if (correct) {
 			_resultLabel = new Label("Correct!");
 		} else {
