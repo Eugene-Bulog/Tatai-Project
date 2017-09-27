@@ -37,7 +37,7 @@ public class Summary extends VBox{
 		_score = new Label(NumberList.getSessionScore() + "/10");
 		_score.setFont(App.getMaoriFont());
 		_score.setTextFill(Color.web("#964B00"));
-		_score.setPadding(new Insets(0, 0, -50, 0));
+		_score.setPadding(new Insets(-120, 0, -20, 0));
 		
 		// Set up buttons
 		_mainMenu = new Button("Main Menu");

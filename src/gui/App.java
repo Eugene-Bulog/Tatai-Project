@@ -119,6 +119,7 @@ public class App extends Application{
 				_mainStage.setScene(new Scene(new MainMenu(), APP_WIDTH,APP_HEIGHT));
 				// Make the stage visible
 				_mainStage.show();
+				_mainStage.sizeToScene();
 			}
 		};
 		service.start();

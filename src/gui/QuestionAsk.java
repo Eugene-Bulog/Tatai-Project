@@ -2,6 +2,7 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -51,13 +52,14 @@ public class QuestionAsk extends VBox{
 			_numberLabel = new Label(Integer.toString(_number));
 			_numberLabel.setFont(App.getMaoriFont());
 			_numberLabel.setTextFill(Color.web("#964B00"));
+			_numberLabel.setPadding(new Insets(-200, 0, 58, 0));
 			
 			// Set up record & cancel buttons
 			_recordButton = new Button("Record Answer");
 			_recordButton.setScaleX(2);
 			_recordButton.setScaleY(2);
 			_recordButton.setFont(App.getRegFont());
-			_cancelButton = new Button("Exit Session");
+			_cancelButton = new Button("Main Menu");
 			_cancelButton.setScaleX(2);
 			_cancelButton.setScaleY(2);
 			_cancelButton.setFont(App.getRegFont());
@@ -65,7 +67,7 @@ public class QuestionAsk extends VBox{
 			
 			// Set up Vbox and add children
 			setAlignment(Pos.CENTER);
-			setSpacing(80);
+			setSpacing(40);
 
 			getChildren().add(_numberLabel);
 			getChildren().add(_recordButton);

@@ -2,6 +2,7 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,6 +32,7 @@ public class QuestionResult extends VBox{
 		_numberLabel = new Label(Integer.toString(_number));
 		_numberLabel.setFont(App.getMaoriFont());
 		_numberLabel.setTextFill(Color.web("#964B00"));
+		_numberLabel.setPadding(new Insets(-200, 0, 0, 0));
 		if (correct) {
 			_resultLabel = new Label("Correct!");
 		} else {
@@ -54,7 +56,7 @@ public class QuestionResult extends VBox{
 		_button.setFont(App.getRegFont());
 		_button.setScaleX(2);
 		_button.setScaleY(2);
-		_cancelButton = new Button("Exit Session");
+		_cancelButton = new Button("Main Menu");
 		_cancelButton.setScaleX(2);
 		_cancelButton.setScaleY(2);
 		_cancelButton.setFont(App.getRegFont());
