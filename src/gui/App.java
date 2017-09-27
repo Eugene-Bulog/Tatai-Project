@@ -2,7 +2,7 @@ package gui;
 
 
 
-
+import Resources.*;
 import javafx.application.Application;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -101,11 +101,11 @@ public class App extends Application{
 					@Override
 					protected Void call() throws Exception {
 						// Load the Maori font
-						_maoriFont = Font.loadFont(this.getClass().getResource("Tuamotu.ttf").toExternalForm(), 75);
+						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/Tuamotu.ttf").toExternalForm(), 75);
 						// Loads the regular font
-						_regularFont = Font.loadFont(this.getClass().getResource("MyriadPro-Regular.ttf").toExternalForm(), 14);
+						_regularFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 14);
 						// Loads the background
-						_patternBackground = new Background(new BackgroundImage(new Image(this.getClass().getResource("maoripattern.png").toExternalForm()
+						_patternBackground = new Background(new BackgroundImage(new Image(this.getClass().getResource("/Resources/maoripattern.png").toExternalForm()
 								,2000,477,true,true), BackgroundRepeat.REPEAT, 
 						        BackgroundRepeat.REPEAT, BackgroundPosition.CENTER,
 						          BackgroundSize.DEFAULT));
