@@ -26,6 +26,8 @@ public class App extends Application{
 	private static Font _maoriFont;
 	private static Font _regularFont;
 	private static Background _patternBackground;
+	private static Image _tick;
+	private static Image _cross;
 	
 	/**
 	 * Getter method for the main stage of the application
@@ -80,6 +82,22 @@ public class App extends Application{
 	public static Background getPatternBackground() {
 		return _patternBackground;
 	}
+	
+	/**
+	 * Getter method for the tick icon
+	 * @return the Image object representing this image
+	 */
+	public static Image getTickIcon() {
+		return _tick;
+	}
+	
+	/**
+	 * Getter method for the cross icon
+	 * @return the Image object representing this image
+	 */
+	public static Image getCrossIcon() {
+		return _cross;
+	}
 
 	
 	/**
@@ -108,6 +126,8 @@ public class App extends Application{
 								,2000,477,true,true), BackgroundRepeat.REPEAT, 
 						        BackgroundRepeat.REPEAT, BackgroundPosition.CENTER,
 						          BackgroundSize.DEFAULT));
+						_tick = new Image(getClass().getResourceAsStream("/Resources/Tick.png"),10,10,true,true);
+						_cross = new Image(getClass().getResourceAsStream("/Resources/Cross.png"),10,10,true,true);
 						return null;
 					}
 				};

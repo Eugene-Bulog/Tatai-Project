@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import utility.NumberList;
@@ -141,12 +142,15 @@ public class Summary extends VBox{
 				_labels[i].setScaleY(1.5);
 				_labels[i].setFont(App.getRegFont());
 				
+				
 				// If the answer was Correct, colors the text green, otherwise red
 				if (NumberList.getAnswerAt(i).equals("Correct")) {
 					_labels[i].setTextFill(Color.web("#50B948"));
+					_labels[i].setGraphic(new ImageView(App.getTickIcon()));
 				}
 				else {
 					_labels[i].setTextFill(Color.web("#CC0000"));
+					_labels[i].setGraphic(new ImageView(App.getCrossIcon()));
 				}
 				
 				// adds the labels to the vbox
