@@ -101,7 +101,7 @@ public class App extends Application{
 					@Override
 					protected Void call() throws Exception {
 						// Load the Maori font
-						_maoriFont = Font.loadFont(this.getClass().getResource("ldj_maori.ttf").toExternalForm(), 110);
+						_maoriFont = Font.loadFont(this.getClass().getResource("Tuamotu.ttf").toExternalForm(), 75);
 						// Loads the regular font
 						_regularFont = Font.loadFont(this.getClass().getResource("MyriadPro-Regular.ttf").toExternalForm(), 14);
 						// Loads the background

@@ -33,10 +33,9 @@ public class MainMenu extends VBox {
 		TITLE = new Label("TATAI!");
 		TITLE.setFont(App.getMaoriFont());
 		
-		//TITLE.setFont(Font.loadFont(this.getClass().getResource("urban_tribal.ttf").toExternalForm(), 110));
 
 		TITLE.setTextFill(Color.web("#964B00"));
-		TITLE.setPadding(new Insets(0, 0, -40, 0));
+		TITLE.setPadding(new Insets(-200, 0, 0, 0));
 		SUBTITLE = new Label("Please select a level: ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
