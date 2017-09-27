@@ -125,5 +125,5 @@ public class App extends Application{
 		service.start();
 	}
 
-//HELLO
+
 }

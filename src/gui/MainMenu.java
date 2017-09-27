@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import utility.NumberList;
 
 public class MainMenu extends VBox {
@@ -31,15 +32,18 @@ public class MainMenu extends VBox {
 		// Set up title
 		TITLE = new Label("TATAI!");
 		TITLE.setFont(App.getMaoriFont());
+		
+		//TITLE.setFont(Font.loadFont(this.getClass().getResource("urban_tribal.ttf").toExternalForm(), 110));
+
 		TITLE.setTextFill(Color.web("#964B00"));
 		TITLE.setPadding(new Insets(0, 0, -40, 0));
-		SUBTITLE = new Label("Number Practice Module");
+		SUBTITLE = new Label("Please select a level: ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
 		SUBTITLE.setFont(App.getRegFont());
 		
 		// Set up buttons
-		EASY_BUTTON = new Button("Practice 1-9");
+		EASY_BUTTON = new Button(" Practice 1-9 ");
 		HARD_BUTTON = new Button("Practice 1-99");
 		EASY_BUTTON.setScaleX(2);
 		EASY_BUTTON.setScaleY(2);
