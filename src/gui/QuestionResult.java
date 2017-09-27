@@ -14,6 +14,7 @@ public class QuestionResult extends VBox{
 	
 	private int _number;
 	private Button _button;
+	private Button _cancelButton;
 	private Label _numberLabel;
 	private Label _resultLabel;
 	private boolean _secondAttempt;
@@ -53,6 +54,10 @@ public class QuestionResult extends VBox{
 		_button.setFont(App.getRegFont());
 		_button.setScaleX(2);
 		_button.setScaleY(2);
+		_cancelButton = new Button("Exit Session");
+		_cancelButton.setScaleX(2);
+		_cancelButton.setScaleY(2);
+		_cancelButton.setFont(App.getRegFont());
 		setUpAction();
 		
 		// Set up Vbox and add children
@@ -62,6 +67,7 @@ public class QuestionResult extends VBox{
 		getChildren().add(_numberLabel);
 		getChildren().add(_resultLabel);
 		getChildren().add(_button);
+		getChildren().add(_cancelButton);
 		
 	}
 	
@@ -70,6 +76,9 @@ public class QuestionResult extends VBox{
 	 * and which attempt this is (first or second)
 	 */
 	private void setUpAction() {
+		
+		
+		// Action for continue / try again button
 		_button.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -106,6 +115,18 @@ public class QuestionResult extends VBox{
 				}
 			}
 		});
+		
+		
+		// Set up action for cancel button to take user back to main menu
+				_cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent arg0) {
+						App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+					}
+					
+				});
+				
 	}
 	
 }

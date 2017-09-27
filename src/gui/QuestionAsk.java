@@ -20,6 +20,7 @@ public class QuestionAsk extends VBox{
 	private boolean _secondAttempt;
 	
 	private Button _recordButton;
+	private Button _cancelButton;
 
 	/**
 	 * Constructor for QuestionAsk VBox
@@ -51,11 +52,15 @@ public class QuestionAsk extends VBox{
 			_numberLabel.setFont(App.getMaoriFont());
 			_numberLabel.setTextFill(Color.web("#964B00"));
 			
-			// Set up record button
+			// Set up record & cancel buttons
 			_recordButton = new Button("Record Answer");
 			_recordButton.setScaleX(2);
 			_recordButton.setScaleY(2);
 			_recordButton.setFont(App.getRegFont());
+			_cancelButton = new Button("Exit Session");
+			_cancelButton.setScaleX(2);
+			_cancelButton.setScaleY(2);
+			_cancelButton.setFont(App.getRegFont());
 			setUpAction();
 			
 			// Set up Vbox and add children
@@ -64,6 +69,7 @@ public class QuestionAsk extends VBox{
 
 			getChildren().add(_numberLabel);
 			getChildren().add(_recordButton);
+			getChildren().add(_cancelButton);
 	}
 	
 	/**
@@ -85,6 +91,16 @@ public class QuestionAsk extends VBox{
 				}
 			}
 
+		});
+		
+		// Set up action for cancel button to take user back to main menu
+		_cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+			
 		});
 	}
 
