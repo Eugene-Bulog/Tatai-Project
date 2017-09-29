@@ -6,7 +6,7 @@ import java.util.*;
 public class MaoriNumbers {
 	
 	// A String array where the index of the array corresponds to that number's pronunciation in Maori.
-	private static final String[] _maoriNumbers = {"", "tahi", "rua", "toru", "wha", "rima", "ono",
+	private static final String[] _maoriNumbers = {"", "tahi", "rua", "toru", "whaa", "rima", "ono",
 															"whitu", "waru", "iwa", "tekau"};                  
 	
 	
