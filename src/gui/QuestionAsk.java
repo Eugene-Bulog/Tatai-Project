@@ -1,5 +1,7 @@
 package gui;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -84,29 +86,55 @@ public class QuestionAsk extends VBox{
 	 */
 	private void setUpAction() {
 
-		
+		// Set up action for record button
 		_recordButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 				
+				// Disable buttons while recording
 				_recordButton.setDisable(true);
 				_cancelButton.setDisable(true);
-				//TO DO: somehow make this run on another thread??\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-				_userAttempt = bash.recordAndRetrieve();
-				System.out.println(_userAttempt);
-				if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
+				
+				// Create service to run the bash process
+				Service<Void> service = new Service<Void>() {
+
+					@Override
+					protected Task<Void> createTask() {
+						return new Task<Void>() {
+
+							@Override
+							protected Void call() throws Exception {
+								// Gets the user's speech
+								_userAttempt = bash.recordAndRetrieve();
+								System.out.println(_userAttempt);
+								return null;
+								
+							}
+							
+						};
+					}
 					
-					// User gets question correct	
-					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
+					@Override
+					protected void succeeded() {
+						// Once recording is finished, checks user's speech against answer
+						if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
+							
+							// User gets question correct	
+							App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
+							
+						} else {
+							
+							//User gets question wrong
+							App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
+							
+						}
+					}
 					
-				} else {
-					
-					//User gets question wrong
-					App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
-					
-				}
-			
+				};
+				
+				// Start service
+				service.start();
 			
 			
 			}
