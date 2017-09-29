@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import utility.MaoriNumbers;
 import utility.NumberList;
 
 public class Summary extends VBox{
@@ -134,8 +135,9 @@ public class Summary extends VBox{
 				
 				// Sets the label text as the question, followed by if the answer was
 				// right or wrong
-				_labels[i] = new Label(NumberList.getNumberAt(i) + ": " + 
-						NumberList.getAnswerAt(i));
+				_labels[i] = new Label(NumberList.getNumberAt(i) + " (" + 
+						MaoriNumbers.getMaoriPronunciation(NumberList.getNumberAt(i)) + ")" + 
+						": " + NumberList.getAnswerAt(i));
 				
 				// Set scale and font
 				_labels[i].setScaleX(1.5);

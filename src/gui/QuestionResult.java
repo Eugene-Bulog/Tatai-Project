@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
+import utility.MaoriNumbers;
 import utility.NumberList;
 
 public class QuestionResult extends VBox{
@@ -37,11 +39,12 @@ public class QuestionResult extends VBox{
 			_resultLabel = new Label("Correct!");
 		} else {
 			if (secondAttempt) {
-				_resultLabel = new Label("Incorrect! You said PLACEHOLDER,\nbut the answer was PLACEHOLDER");
+				_resultLabel = new Label("Incorrect! You said PLACEHOLDER,\nbut the answer was " + MaoriNumbers.getMaoriPronunciation(_number));
 			} else {
 				_resultLabel = new Label("Incorrect! Try again!");
 			}
 		}
+		_resultLabel.setTextAlignment(TextAlignment.CENTER);
 		_resultLabel.setFont(App.getRegFont());
 		_resultLabel.setScaleX(2);
 		_resultLabel.setScaleY(2);
