@@ -20,11 +20,12 @@ public class QuestionAsk extends VBox{
 	// The number being asked for this question
 	private int _number;
 	private Label _numberLabel;
-	private BashProcess bash = BashProcess.getInstance();
 	
 	// Whether or not this is the second attempt for this question
 	private boolean _secondAttempt;
 	
+	private Button _hearRecording;
+	private Button _submit;
 	private Button _recordButton;
 	private Button _cancelButton;
 	
@@ -70,6 +71,15 @@ public class QuestionAsk extends VBox{
 			_cancelButton.setScaleX(2);
 			_cancelButton.setScaleY(2);
 			_cancelButton.setFont(App.getRegFont());
+			
+			_hearRecording = new Button("Hear Recording");
+			_hearRecording.setScaleX(2);
+			_hearRecording.setScaleY(2);
+			_hearRecording.setFont(App.getRegFont());
+			_submit = new Button("Submit");
+			_submit.setScaleX(2);
+			_submit.setScaleY(2);
+			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
 			// Set up Vbox and add children
@@ -95,6 +105,8 @@ public class QuestionAsk extends VBox{
 				// Disable buttons while recording
 				_recordButton.setDisable(true);
 				_cancelButton.setDisable(true);
+				_submit.setDisable(true);
+				_hearRecording.setDisable(true);
 				
 				// Create service to run the bash process
 				Service<Void> service = new Service<Void>() {
@@ -106,7 +118,7 @@ public class QuestionAsk extends VBox{
 							@Override
 							protected Void call() throws Exception {
 								// Gets the user's speech
-								_userAttempt = bash.recordAndRetrieve();
+								_userAttempt = BashProcess.getInstance().recordAndRetrieve();
 								System.out.println(_userAttempt);
 								return null;
 								
@@ -117,18 +129,19 @@ public class QuestionAsk extends VBox{
 					
 					@Override
 					protected void succeeded() {
-						// Once recording is finished, checks user's speech against answer
-						if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
-							
-							// User gets question correct	
-							App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
-							
-						} else {
-							
-							//User gets question wrong
-							App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
-							
+						// Changes order of buttons
+						if (!getChildren().contains(_submit)) {
+							getChildren().remove(_cancelButton);
+							getChildren().add(_submit);
+							getChildren().add(_hearRecording);
+							getChildren().add(_cancelButton);
 						}
+						
+						// Makes buttons clickable again
+						_recordButton.setDisable(false);
+						_cancelButton.setDisable(false);
+						_submit.setDisable(false);
+						_hearRecording.setDisable(false);
 					}
 					
 				};
@@ -147,6 +160,32 @@ public class QuestionAsk extends VBox{
 			@Override
 			public void handle(ActionEvent arg0) {
 				App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+			
+		});
+		
+		
+		// Set up action for hear recording
+		// @TODO 
+		
+		
+		// Set up action for submit button
+		_submit.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// Once recording is finished, checks user's speech against answer
+				if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
+					
+					// User gets question correct	
+					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
+					
+				} else {
+					
+					//User gets question wrong
+					App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
+					
+				}
 			}
 			
 		});
