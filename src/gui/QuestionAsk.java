@@ -25,7 +25,9 @@ public class QuestionAsk extends VBox{
 	
 	private Button _recordButton;
 	private Button _cancelButton;
-
+	
+	// The user's attempted Maori pronunciation
+	private static String _userAttempt = "";
 	/**
 	 * Constructor for QuestionAsk VBox
 	 */
@@ -91,9 +93,9 @@ public class QuestionAsk extends VBox{
 				_recordButton.setDisable(true);
 				_cancelButton.setDisable(true);
 				//TO DO: somehow make this run on another thread??\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-				String userAttempt = bash.recordAndRetrieve();
-				System.out.println(userAttempt);
-				if (userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
+				_userAttempt = bash.recordAndRetrieve();
+				System.out.println(_userAttempt);
+				if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
 					
 					// User gets question correct	
 					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
@@ -121,5 +123,15 @@ public class QuestionAsk extends VBox{
 			
 		});
 	}
-
+	
+	
+	/**
+	 * Getter method that returns the users attempted Maori pronunciation.
+	 * 
+	 * @return A String representing the user's Maori pronunciation attempt.
+	 */
+	public static String getUserAttempt() {
+		return _userAttempt;
+	}
+	
 }

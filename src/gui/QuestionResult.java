@@ -39,7 +39,17 @@ public class QuestionResult extends VBox{
 			_resultLabel = new Label("Correct!");
 		} else {
 			if (secondAttempt) {
-				_resultLabel = new Label("Incorrect! You said PLACEHOLDER,\nbut the answer was " + MaoriNumbers.getMaoriPronunciation(_number));
+				
+				String theirAttempt = QuestionAsk.getUserAttempt();
+				if (theirAttempt.isEmpty()) {
+					
+					// If no recording is picked up:
+					_resultLabel = new Label("Incorrect! The correct answer was '" + MaoriNumbers.getMaoriPronunciation(_number)+"', \nbut you didn't say anything.");
+				} else {
+					
+					// They got it wrong on their second attempt:
+					_resultLabel = new Label("Incorrect! You said '"+theirAttempt+"',\nbut the correct answer was '" + MaoriNumbers.getMaoriPronunciation(_number)+"'.");
+				}
 			} else {
 				_resultLabel = new Label("Incorrect! Try again!");
 			}
