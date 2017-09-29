@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import utility.BashProcess;
+import utility.MaoriNumbers;
 import utility.NumberList;
 
 public class QuestionAsk extends VBox{
@@ -16,6 +18,7 @@ public class QuestionAsk extends VBox{
 	// The number being asked for this question
 	private int _number;
 	private Label _numberLabel;
+	private BashProcess bash = BashProcess.getInstance();
 	
 	// Whether or not this is the second attempt for this question
 	private boolean _secondAttempt;
@@ -78,19 +81,32 @@ public class QuestionAsk extends VBox{
 	 * Sets up the event handler for the record button
 	 */
 	private void setUpAction() {
-		///////////////////////// PLACEHOLDER, REPLACE WITH CALL TO RECORD & CHECK METHODS ///////////////////////////////////////
+
+		
 		_recordButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
-				switch (new java.util.Random().nextInt(2)) {
-				case 0:
+				
+				_recordButton.setDisable(true);
+				_cancelButton.setDisable(true);
+				//TO DO: somehow make this run on another thread??\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+				String userAttempt = bash.recordAndRetrieve();
+				System.out.println(userAttempt);
+				if (userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
+					
+					// User gets question correct	
 					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
-					break;
-				case 1:
+					
+				} else {
+					
+					//User gets question wrong
 					App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
-					break;
+					
 				}
+			
+			
+			
 			}
 
 		});

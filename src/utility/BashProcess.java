@@ -11,6 +11,7 @@ public final class BashProcess {
 
 	private static final  BashProcess INSTANCE = new BashProcess();
 	private ProcessBuilder pb;
+	private static String _userAttempt;
 	
 	
 	private BashProcess() {
@@ -23,8 +24,9 @@ public final class BashProcess {
 	}
 	
 	/**
-	 * This method runs record commands in Bash (using the supplied GoSpeech script file).
-	 *  
+	 * This method runs record commands in Bash (using the supplied GoSpeech script file),
+	 * and then makes a call to getUserAttempt to return the user's spoken words.
+	 * @return A String representing the user's MaoriPronunciation.
 	 */
 	public String recordAndRetrieve() {
 			
@@ -34,6 +36,7 @@ public final class BashProcess {
 			try {
 				recordingProcess = pb.start();
 				recordingProcess.waitFor();
+				return getUserAttempt();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -41,16 +44,19 @@ public final class BashProcess {
 				e.printStackTrace();
 			}
 			
-			return getUserAttempt(recordingProcess);
+			return null;
 			
 	}
 	
-	//read recout.mlf and join lines, return user attempt as string
-	public String getUserAttempt(Process recordingProcess)  {
-		
-			if (recordingProcess == null) {
-				return null;
-			} 
+	/**
+	 * This method is called from BashProcess#recordAndRetrieve() and thus is only called
+	 * when the BashProcess is finished. It reads the file "recout.mlf" to retrieve the user's spoken
+	 * Maori syllables, and returns these as a single string.
+	 * 
+	 * @return A string representing the user's spoken Maori syllables.
+	 */
+	public String getUserAttempt()  {
+		 
 			
 			BufferedReader br;
 			try {
@@ -58,7 +64,7 @@ public final class BashProcess {
 				br = new BufferedReader(new FileReader("HTK/MaoriNumbers/recout.mlf"));
 			
 				String line;
-				List<String> userAttempt = new ArrayList<String>();
+				List<String> userAttemptList = new ArrayList<String>();
 				while ((line = br.readLine())!=null) {
 					
 					if (line.equals("sil")) {
@@ -68,14 +74,15 @@ public final class BashProcess {
 						
 						while (!line.equals("sil")) {
 							
-							userAttempt.add(line);
+							userAttemptList.add(line);
 							line = br.readLine();
 						}
 					}
 				}
 				
 				br.close();
-				return String.join(" ", userAttempt);
+				_userAttempt = String.join(" ", userAttemptList);
+				return _userAttempt;
 			
 			
 			} catch (IOException e) {
@@ -85,6 +92,7 @@ public final class BashProcess {
 		
 		return null;
 	}	
+	
 	
 	
 }
