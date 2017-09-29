@@ -36,13 +36,13 @@ public class MaoriNumbers {
 					
 					return _maoriNumbers[number]; 
 					
-				case 2: //Number is two digits, so get each digit
+				case 2: // Number is two digits 
 					
 					if (number==10) {
 						return _maoriNumbers[number];
 					}
 					
-					
+					// Get each digit
 					int firstDigit = Character.getNumericValue((String.valueOf(number).toCharArray()[0]));
 					int secondDigit = Character.getNumericValue((String.valueOf(number).toCharArray()[1]));
 
@@ -50,6 +50,10 @@ public class MaoriNumbers {
 					if (number%10 ==0) {
 						
 						return _maoriNumbers[firstDigit] + " tekau";
+						
+					} else if (number>10 && number<20 ){
+						
+						return "tekau maa " + _maoriNumbers[secondDigit];
 						
 					} else {
 						
