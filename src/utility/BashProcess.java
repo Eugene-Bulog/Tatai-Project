@@ -32,7 +32,7 @@ public final class BashProcess {
 			
 			Process recordingProcess = null;
 			pb = new ProcessBuilder("bash", "-c", "./GoSpeech");
-			pb.directory(new File("src/HTK/MaoriNumbers"));
+			pb.directory(new File("HTK/MaoriNumbers"));
 			try {
 				recordingProcess = pb.start();
 				recordingProcess.waitFor();
@@ -61,7 +61,7 @@ public final class BashProcess {
 			BufferedReader br;
 			try {
 				
-				br = new BufferedReader(new FileReader("src/HTK/MaoriNumbers/recout.mlf"));
+				br = new BufferedReader(new FileReader("HTK/MaoriNumbers/recout.mlf"));
 			
 				String line;
 				List<String> userAttemptList = new ArrayList<String>();
@@ -97,7 +97,7 @@ public final class BashProcess {
 	public void hearRecording() {
 		
 		pb2 = new ProcessBuilder("bash", "-c", "aplay foo.wav");
-		pb2.directory(new File("src/HTK/MaoriNumbers"));
+		pb2.directory(new File("HTK/MaoriNumbers"));
 		
 		Process hearUsersAttempt = null;
 		try {
