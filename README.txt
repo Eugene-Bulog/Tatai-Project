@@ -4,8 +4,16 @@ Tatai Practice Module
 Before running, please install JavaFX to your Virtual Machine using sudo apt-get install openjfx
 ~~~~~~~~~~~~~~
 
+~~~~~~~~~~~~~~
+IMPORTANT
+~~~~~~~~~~~~~~
+TO RUN THE PROGRAM:
+1. Navigate inside the folder (SE-206-A03) containing the SE-206-a03.jar file using terminal
+2. Add executable permissions to the jar (using the command: chmod +x ./SE-206-a03.jar)
+3. Run the jar from the terminal (using the command: ./SE-206-a03.jar)
 
 Instructions:
+
 
 1. Select a difficulty level (1-9 or 1-99)
 2. For each question, press record, and then clearly say the number in Maori
