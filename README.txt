@@ -1,4 +1,7 @@
 Tatai Practice Module
+SE206 Assignment 3
+by Eugene Bulog & Shane Barboza
+
 
 ~~~~~~~~~~~~~~
 Before running, please install JavaFX to your Virtual Machine using sudo apt-get install openjfx
