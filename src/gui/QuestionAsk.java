@@ -186,7 +186,10 @@ public class QuestionAsk extends VBox{
 
 							@Override
 							protected Void call() throws Exception {
-								// TODO Auto-generated method stub
+								
+								
+								BashProcess.getInstance().hearRecording();								
+								
 								return null;
 							}
 							

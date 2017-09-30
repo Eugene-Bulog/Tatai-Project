@@ -10,7 +10,7 @@ import java.util.List;
 public final class BashProcess {
 
 	private static final  BashProcess INSTANCE = new BashProcess();
-	private ProcessBuilder pb;
+	private ProcessBuilder pb, pb2;
 	private static String _userAttempt;
 	
 	
@@ -93,6 +93,28 @@ public final class BashProcess {
 		return null;
 	}	
 	
+	@SuppressWarnings("unused")
+	public void hearRecording() {
+		
+		pb2 = new ProcessBuilder("bash", "-c", "aplay foo.wav");
+		pb2.directory(new File("HTK/MaoriNumbers"));
+		
+		Process hearUsersAttempt = null;
+		try {
+			
+			hearUsersAttempt = pb2.start();
+			hearUsersAttempt.waitFor();
+			return;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
 	
 	
 }
