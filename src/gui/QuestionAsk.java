@@ -129,14 +129,16 @@ public class QuestionAsk extends VBox{
 					
 					@Override
 					protected void succeeded() {
+						
+						_recordButton.setText("Re-Record");
 						// Changes order of buttons
 						if (!getChildren().contains(_submit)) {
 							getChildren().remove(_cancelButton);
-							getChildren().add(_submit);
 							getChildren().add(_hearRecording);
+							getChildren().add(_submit);
 							getChildren().add(_cancelButton);
 						}
-						
+						_numberLabel.setPadding(new Insets(-102, 0, 20, 0));
 						// Makes buttons clickable again
 						_recordButton.setDisable(false);
 						_cancelButton.setDisable(false);
@@ -166,7 +168,45 @@ public class QuestionAsk extends VBox{
 		
 		
 		// Set up action for hear recording
-		// @TODO 
+		_hearRecording.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// Disable buttons while playing
+				_recordButton.setDisable(true);
+				_cancelButton.setDisable(true);
+				_submit.setDisable(true);
+				_hearRecording.setDisable(true);
+				
+				Service<Void> service = new Service<Void>() {
+
+					@Override
+					protected Task<Void> createTask() {
+						return new Task<Void>() {
+
+							@Override
+							protected Void call() throws Exception {
+								// TODO Auto-generated method stub
+								return null;
+							}
+							
+						};
+					}
+
+					@Override
+					protected void succeeded() {
+						_recordButton.setDisable(false);
+						_cancelButton.setDisable(false);
+						_submit.setDisable(false);
+						_hearRecording.setDisable(false);
+					}
+					
+				};
+				
+				service.start();
+			}
+			
+		});
 		
 		
 		// Set up action for submit button
