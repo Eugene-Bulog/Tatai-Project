@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import utility.BashProcess;
 import utility.MaoriNumbers;
 import utility.NumberList;
@@ -20,6 +21,7 @@ public class QuestionAsk extends VBox{
 	// The number being asked for this question
 	private int _number;
 	private Label _numberLabel;
+	private Label _currentScore;
 	
 	// Whether or not this is the second attempt for this question
 	private boolean _secondAttempt;
@@ -60,7 +62,14 @@ public class QuestionAsk extends VBox{
 			_numberLabel = new Label(Integer.toString(_number));
 			_numberLabel.setFont(App.getMaoriFont());
 			_numberLabel.setTextFill(Color.web("#964B00"));
-			_numberLabel.setPadding(new Insets(-200, 0, 58, 0));
+			_numberLabel.setPadding(new Insets(-140, 0, 58, 0));
+			
+			// Label for currentscore
+			_currentScore = new Label("Current Score: " + NumberList.getSessionScore() + "/" + NumberList.getNumberAnswered());
+			_currentScore.setTextAlignment(TextAlignment.CENTER);
+			_currentScore.setFont(App.getRegFont());
+			_currentScore.setScaleX(2);
+			_currentScore.setScaleY(2);
 			
 			// Set up record & cancel buttons
 			_recordButton = new Button("Record Answer");
@@ -86,9 +95,11 @@ public class QuestionAsk extends VBox{
 			setAlignment(Pos.CENTER);
 			setSpacing(40);
 
+			
 			getChildren().add(_numberLabel);
 			getChildren().add(_recordButton);
 			getChildren().add(_cancelButton);
+			getChildren().add(_currentScore);
 	}
 	
 	/**
@@ -134,11 +145,13 @@ public class QuestionAsk extends VBox{
 						// Changes order of buttons
 						if (!getChildren().contains(_submit)) {
 							getChildren().remove(_cancelButton);
+							getChildren().remove(_currentScore);
 							getChildren().add(_hearRecording);
 							getChildren().add(_submit);
 							getChildren().add(_cancelButton);
+							getChildren().add(_currentScore);
 						}
-						_numberLabel.setPadding(new Insets(-102, 0, 20, 0));
+						_numberLabel.setPadding(new Insets(-42, 0, 20, 0));
 						// Makes buttons clickable again
 						_recordButton.setDisable(false);
 						_cancelButton.setDisable(false);

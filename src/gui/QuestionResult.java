@@ -20,6 +20,7 @@ public class QuestionResult extends VBox{
 	private Button _cancelButton;
 	private Label _numberLabel;
 	private Label _resultLabel;
+	private Label _currentScore;
 	private boolean _secondAttempt;
 	private boolean _correct;
 	
@@ -34,7 +35,16 @@ public class QuestionResult extends VBox{
 		_numberLabel = new Label(Integer.toString(_number));
 		_numberLabel.setFont(App.getMaoriFont());
 		_numberLabel.setTextFill(Color.web("#964B00"));
-		_numberLabel.setPadding(new Insets(-200, 0, 0, 0));
+		_numberLabel.setPadding(new Insets(-140, 0, 0, 0));
+		
+		
+		// Label for currentscore
+		_currentScore = new Label("Current Score: " + NumberList.getSessionScore() + "/" + NumberList.getNumberAnswered());
+		_currentScore.setTextAlignment(TextAlignment.CENTER);
+		_currentScore.setFont(App.getRegFont());
+		_currentScore.setScaleX(2);
+		_currentScore.setScaleY(2);
+		
 		if (correct) {
 			_resultLabel = new Label("Correct!");
 		} else {
@@ -83,6 +93,7 @@ public class QuestionResult extends VBox{
 		getChildren().add(_resultLabel);
 		getChildren().add(_button);
 		getChildren().add(_cancelButton);
+		getChildren().add(_currentScore);
 		
 	}
 	

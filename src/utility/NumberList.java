@@ -116,6 +116,14 @@ public class NumberList {
 		return count;
 	}
 	
+	/**
+	 * Gets the number of questions answered
+	 * @return The number of questions answered so far
+	 */
+	public static int getNumberAnswered() {
+		return _answerLog.size();
+	}
+	
 	
 	/**
 	 * Getter for whether the application is in hard mode or not
