@@ -10,7 +10,7 @@ IMPORTANT
 TO RUN THE PROGRAM:
 1. Navigate inside the folder (SE-206-A03) containing the SE-206-a03.jar file using terminal
 2. Add executable permissions to the jar (using the command: chmod +x ./SE-206-a03.jar)
-3. Run the jar from the terminal (using the command: ./SE-206-a03.jar)
+3. Run the jar from the terminal (using the command: java -jar ./SE-206-a03.jar)
 
 Instructions:
 
