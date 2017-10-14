@@ -38,7 +38,7 @@ public class NumberApp extends Application{
 		return _mainStage;
 	}
 	
-	public static void start(String[] args) {
+	public static void run(String[] args) {
 		// Main launches the application
         launch(args);
     }
