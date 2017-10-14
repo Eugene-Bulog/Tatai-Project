@@ -18,6 +18,8 @@ public class MainMenu extends VBox {
 	private final Button HARD_BUTTON;
 	private final Label TITLE;
 	private final Label SUBTITLE;
+	private final Label ACCENT;
+
 	
 	
 	/**
@@ -32,6 +34,12 @@ public class MainMenu extends VBox {
 		TITLE = new Label("TATAI!");
 		TITLE.setFont(NumberApp.getMaoriFont());
 		
+		// Set up accent for title
+		ACCENT = new Label("-     ");
+		ACCENT.setFont(NumberApp.getMaoriFont());
+		ACCENT.setTextFill(Color.web("#964B00"));
+		ACCENT.setPadding(new Insets(-200, 0, 0, 0));
+
 
 		TITLE.setTextFill(Color.web("#964B00"));
 		TITLE.setPadding(new Insets(-200, 0, 0, 0));
@@ -55,6 +63,7 @@ public class MainMenu extends VBox {
 		setAlignment(Pos.CENTER);
 		
 		setSpacing(40);
+		getChildren().add(ACCENT);
 		getChildren().add(TITLE);
 		getChildren().add(SUBTITLE);
 		getChildren().add(EASY_BUTTON);
