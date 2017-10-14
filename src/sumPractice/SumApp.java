@@ -25,6 +25,7 @@ public class SumApp extends Application{
 	
 	private static Font _maoriFont;
 	private static Font _regularFont;
+	private static Font _regularFontLarge;
 	private static Background _patternBackground;
 	private static Image _tick;
 	private static Image _cross;
@@ -59,7 +60,7 @@ public class SumApp extends Application{
 	
 	/**
 	 * Getter method for the main "Maori font" to be used throughout the app.
-	 * Size 110, font name ldj_maori.ttf
+	 * Size 75, font name ldj_maori.ttf
 	 * @return the font object representing this font
 	 */
 	public static Font getMaoriFont() {
@@ -73,6 +74,15 @@ public class SumApp extends Application{
 	 */
 	public static Font getRegFont() {
 		return _regularFont;
+	}
+	
+	/**
+	 * Getter method for the main "regular font" to be used throughout the app.
+	 * Size 90, font name MyriadPro-Regular.ttf
+	 * @return the font object representing this font
+	 */
+	public static Font getRegFontLarge() {
+		return _regularFontLarge;
 	}
 	
 	/**
@@ -118,9 +128,10 @@ public class SumApp extends Application{
 					@Override
 					protected Void call() throws Exception {
 						// Load the Maori font
-						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf"/*"/Resources/Tuamotu.ttf"*/).toExternalForm(), 75);
+						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/Tuamotu.ttf").toExternalForm(), 75);
 						// Loads the regular font
 						_regularFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 14);
+						_regularFontLarge = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 90);
 						// Loads the background
 						_patternBackground = new Background(new BackgroundImage(new Image(this.getClass().getResource("/Resources/maoripattern.png").toExternalForm()
 								,2000,477,true,true), BackgroundRepeat.REPEAT, 

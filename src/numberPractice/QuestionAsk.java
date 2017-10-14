@@ -60,7 +60,7 @@ public class QuestionAsk extends VBox{
 		
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));
-			_numberLabel.setFont(NumberApp.getMaoriFont());
+			_numberLabel.setFont(NumberApp.getRegFontLarge());
 			_numberLabel.setTextFill(Color.web("#964B00"));
 			_numberLabel.setPadding(new Insets(-140, 0, 58, 0));
 			

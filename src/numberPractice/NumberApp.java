@@ -25,6 +25,7 @@ public class NumberApp extends Application{
 	
 	private static Font _maoriFont;
 	private static Font _regularFont;
+	private static Font _regularFontLarge;
 	private static Background _patternBackground;
 	private static Image _tick;
 	private static Image _cross;
@@ -76,6 +77,15 @@ public class NumberApp extends Application{
 	}
 	
 	/**
+	 * Getter method for the main "regular font" to be used throughout the app.
+	 * Size 220, font name MyriadPro-Regular.ttf
+	 * @return the font object representing this font
+	 */
+	public static Font getRegFontLarge() {
+		return _regularFontLarge;
+	}
+	
+	/**
 	 * Getter method for the main background to be used throughout the app
 	 * @return the BackgroundImage object representing this image
 	 */
@@ -121,6 +131,7 @@ public class NumberApp extends Application{
 						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/Tuamotu.ttf").toExternalForm(), 75);
 						// Loads the regular font
 						_regularFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 14);
+						_regularFontLarge = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 90);
 						// Loads the background
 						_patternBackground = new Background(new BackgroundImage(new Image(this.getClass().getResource("/Resources/maoripattern.png").toExternalForm()
 								,2000,477,true,true), BackgroundRepeat.REPEAT, 
