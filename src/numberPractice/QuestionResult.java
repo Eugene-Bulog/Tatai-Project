@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import main.App;
 import utility.MaoriNumbers;
 import utility.NumberList;
 
@@ -26,14 +27,14 @@ public class QuestionResult extends VBox{
 	
 	public QuestionResult(boolean correct,boolean secondAttempt, int number) {
 		
-		setBackground(NumberApp.getPatternBackground());
+		setBackground(App.getPatternBackground());
 		_number = number;
 		_secondAttempt = secondAttempt;
 		_correct = correct;
 		
 		// Sets the label to the question value
 		_numberLabel = new Label(Integer.toString(_number));
-		_numberLabel.setFont(NumberApp.getRegFontLarge());
+		_numberLabel.setFont(App.getRegFontLarge());
 		_numberLabel.setTextFill(Color.web("#964B00"));
 		_numberLabel.setPadding(new Insets(-140, 0, 0, 0));
 		
@@ -41,7 +42,7 @@ public class QuestionResult extends VBox{
 		// Label for currentscore
 		_currentScore = new Label("Current Score: " + NumberList.getSessionScore() + "/" + NumberList.getNumberAnswered());
 		_currentScore.setTextAlignment(TextAlignment.CENTER);
-		_currentScore.setFont(NumberApp.getRegFont());
+		_currentScore.setFont(App.getRegFont());
 		_currentScore.setScaleX(2);
 		_currentScore.setScaleY(2);
 		
@@ -65,7 +66,7 @@ public class QuestionResult extends VBox{
 			}
 		}
 		_resultLabel.setTextAlignment(TextAlignment.CENTER);
-		_resultLabel.setFont(NumberApp.getRegFont());
+		_resultLabel.setFont(App.getRegFont());
 		_resultLabel.setScaleX(2);
 		_resultLabel.setScaleY(2);
 
@@ -76,13 +77,13 @@ public class QuestionResult extends VBox{
 		else {
 			_button = new Button("Continue");
 		}
-		_button.setFont(NumberApp.getRegFont());
+		_button.setFont(App.getRegFont());
 		_button.setScaleX(2);
 		_button.setScaleY(2);
 		_cancelButton = new Button("Main Menu");
 		_cancelButton.setScaleX(2);
 		_cancelButton.setScaleY(2);
-		_cancelButton.setFont(NumberApp.getRegFont());
+		_cancelButton.setFont(App.getRegFont());
 		setUpAction();
 		
 		// Set up Vbox and add children
@@ -115,10 +116,10 @@ public class QuestionResult extends VBox{
 					
 					// If there are no more questions left, goes to summary scene, otherwise next question
 					if (NumberList.noQuestions()) {
-						NumberApp.getMainStage().setScene(new Scene(new Summary(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+						App.getMainStage().setScene(new Scene(new Summary(),App.APP_WIDTH,App.APP_HEIGHT));
 					}
 					else {
-						NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+						App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 					}
 				}
 				else {
@@ -128,15 +129,15 @@ public class QuestionResult extends VBox{
 						
 						// If there are no more questions left, goes to summary scene, otherwise next question
 						if (NumberList.noQuestions()) {
-							NumberApp.getMainStage().setScene(new Scene(new Summary(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+							App.getMainStage().setScene(new Scene(new Summary(),App.APP_WIDTH,App.APP_HEIGHT));
 						}
 						else {
-							NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+							App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 						}
 					}
 					// If first attempt and wrong answer, user can try again
 					else {
-						NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(_number),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+						App.getMainStage().setScene(new Scene(new QuestionAsk(_number),App.APP_WIDTH,App.APP_HEIGHT));
 					}
 				}
 			}
@@ -148,7 +149,7 @@ public class QuestionResult extends VBox{
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						NumberApp.getMainStage().setScene(new Scene(new MainMenu(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+						App.getMainStage().setScene(new Scene(new NumberMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 					}
 					
 				});

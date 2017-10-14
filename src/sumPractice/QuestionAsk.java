@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import main.App;
 import utility.BashProcess;
 import utility.MaoriNumbers;
 import utility.EquationList;
@@ -57,18 +58,18 @@ public class QuestionAsk extends VBox{
 	}
 
 	private void setUpGUI() {
-			setBackground(SumApp.getPatternBackground());
+			setBackground(App.getPatternBackground());
 		
 			// Sets the label to the question value
 			_numberLabel = new Label(_question[0]);
-			_numberLabel.setFont(SumApp.getRegFontLarge());
+			_numberLabel.setFont(App.getRegFontLarge());
 			_numberLabel.setTextFill(Color.web("#964B00"));
 			_numberLabel.setPadding(new Insets(-140, 0, 58, 0));
 			
 			// Label for currentscore
 			_currentScore = new Label("Current Score: " + EquationList.getSessionScore() + "/" + EquationList.getNumberAnswered());
 			_currentScore.setTextAlignment(TextAlignment.CENTER);
-			_currentScore.setFont(SumApp.getRegFont());
+			_currentScore.setFont(App.getRegFont());
 			_currentScore.setScaleX(2);
 			_currentScore.setScaleY(2);
 			
@@ -76,20 +77,20 @@ public class QuestionAsk extends VBox{
 			_recordButton = new Button("Record Answer");
 			_recordButton.setScaleX(2);
 			_recordButton.setScaleY(2);
-			_recordButton.setFont(SumApp.getRegFont());
+			_recordButton.setFont(App.getRegFont());
 			_cancelButton = new Button("Main Menu");
 			_cancelButton.setScaleX(2);
 			_cancelButton.setScaleY(2);
-			_cancelButton.setFont(SumApp.getRegFont());
+			_cancelButton.setFont(App.getRegFont());
 			
 			_hearRecording = new Button("Hear Recording");
 			_hearRecording.setScaleX(2);
 			_hearRecording.setScaleY(2);
-			_hearRecording.setFont(SumApp.getRegFont());
+			_hearRecording.setFont(App.getRegFont());
 			_submit = new Button("Submit");
 			_submit.setScaleX(2);
 			_submit.setScaleY(2);
-			_submit.setFont(SumApp.getRegFont());
+			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
 			// Set up Vbox and add children
@@ -176,7 +177,7 @@ public class QuestionAsk extends VBox{
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				SumApp.getMainStage().setScene(new Scene(new MainMenu(),SumApp.APP_WIDTH,SumApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
@@ -236,12 +237,12 @@ public class QuestionAsk extends VBox{
 				//if (MaoriNumbers.getMaoriPronunciation(Integer.parseInt(TEMPTEXT.getText())).equals(MaoriNumbers.getMaoriPronunciation(Integer.parseInt(_question[1])))) { 
 				if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(Integer.parseInt(_question[1])))) {
 					// User gets question correct	
-					SumApp.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_question),SumApp.APP_WIDTH,SumApp.APP_HEIGHT));
+					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_question),App.APP_WIDTH,App.APP_HEIGHT));
 					
 				} else {
 					
 					//User gets question wrong
-					SumApp.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_question),SumApp.APP_WIDTH,SumApp.APP_HEIGHT));
+					App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_question),App.APP_WIDTH,App.APP_HEIGHT));
 					
 				}
 			}

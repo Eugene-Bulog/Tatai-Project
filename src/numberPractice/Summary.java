@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import main.App;
 import utility.MaoriNumbers;
 import utility.NumberList;
 
@@ -31,13 +32,13 @@ public class Summary extends VBox{
 	public Summary() {
 		
 		// set the background
-		setBackground(NumberApp.getPatternBackground());
+		setBackground(App.getPatternBackground());
 		
 		_summaryBox = new SummaryBox();
 		
 		// Set up score label
 		_score = new Label(NumberList.getSessionScore() + "/10");
-		_score.setFont(NumberApp.getMaoriFont());
+		_score.setFont(App.getMaoriFont());
 		_score.setTextFill(Color.web("#964B00"));
 		_score.setPadding(new Insets(-120, 0, -20, 0));
 		
@@ -45,9 +46,9 @@ public class Summary extends VBox{
 		_mainMenu = new Button("Main Menu");
 		_nextLevel = new Button("Next Level");
 		_playAgain = new Button("Play Again");
-		_mainMenu.setFont(NumberApp.getRegFont());
-		_nextLevel.setFont(NumberApp.getRegFont());
-		_playAgain.setFont(NumberApp.getRegFont());
+		_mainMenu.setFont(App.getRegFont());
+		_nextLevel.setFont(App.getRegFont());
+		_playAgain.setFont(App.getRegFont());
 		_playAgain.setScaleX(2);
 		_playAgain.setScaleY(2);
 		_mainMenu.setScaleX(2);
@@ -87,8 +88,8 @@ public class Summary extends VBox{
 				}
 
 				// Move to the question scene
-				NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(),
-						NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new QuestionAsk(),
+						App.APP_WIDTH,App.APP_HEIGHT));
 			}
 		});
 		
@@ -96,8 +97,8 @@ public class Summary extends VBox{
 		_mainMenu.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				NumberApp.getMainStage().setScene(new Scene(new MainMenu(),
-						NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new NumberMainMenu(),
+						App.APP_WIDTH,App.APP_HEIGHT));
 			}
 		});
 		
@@ -108,8 +109,8 @@ public class Summary extends VBox{
 				// Generate a list of hard questions
 				NumberList.generateHard();
 				// Move to the question scene
-				NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(),
-						NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new QuestionAsk(),
+						App.APP_WIDTH,App.APP_HEIGHT));
 			}
 		});
 	}
@@ -142,17 +143,17 @@ public class Summary extends VBox{
 				// Set scale and font
 				_labels[i].setScaleX(1.5);
 				_labels[i].setScaleY(1.5);
-				_labels[i].setFont(NumberApp.getRegFont());
+				_labels[i].setFont(App.getRegFont());
 				
 				
 				// If the answer was Correct, colors the text green, otherwise red
 				if (NumberList.getAnswerAt(i).equals("Correct")) {
 					_labels[i].setTextFill(Color.web("#50B948"));
-					_labels[i].setGraphic(new ImageView(NumberApp.getTickIcon()));
+					_labels[i].setGraphic(new ImageView(App.getTickIcon()));
 				}
 				else {
 					_labels[i].setTextFill(Color.web("#CC0000"));
-					_labels[i].setGraphic(new ImageView(NumberApp.getCrossIcon()));
+					_labels[i].setGraphic(new ImageView(App.getCrossIcon()));
 				}
 				
 				// adds the labels to the vbox

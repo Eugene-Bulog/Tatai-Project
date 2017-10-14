@@ -9,9 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import main.App;
 import utility.NumberList;
 
-public class MainMenu extends VBox {
+public class NumberMainMenu extends VBox {
 
 	// Initialize buttons
 	private final Button EASY_BUTTON;
@@ -25,18 +26,18 @@ public class MainMenu extends VBox {
 	/**
 	 * Constructor for MainMenu VBox object, sets up the layout and functions of this view
 	 */
-	public MainMenu() {
+	public NumberMainMenu() {
 		
 		// Set up background image
-		setBackground(NumberApp.getPatternBackground());
+		setBackground(App.getPatternBackground());
 		
 		// Set up title
 		TITLE = new Label("TATAI!");
-		TITLE.setFont(NumberApp.getMaoriFont());
+		TITLE.setFont(App.getMaoriFont());
 		
 		// Set up accent for title
 		ACCENT = new Label("-     ");
-		ACCENT.setFont(NumberApp.getMaoriFont());
+		ACCENT.setFont(App.getMaoriFont());
 		ACCENT.setTextFill(Color.web("#964B00"));
 		ACCENT.setPadding(new Insets(-200, 0, 0, 0));
 
@@ -46,7 +47,7 @@ public class MainMenu extends VBox {
 		SUBTITLE = new Label("Please select a level: ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
-		SUBTITLE.setFont(NumberApp.getRegFont());
+		SUBTITLE.setFont(App.getRegFont());
 		
 		// Set up buttons
 		EASY_BUTTON = new Button(" Practice 1-9 ");
@@ -55,8 +56,8 @@ public class MainMenu extends VBox {
 		EASY_BUTTON.setScaleY(2);
 		HARD_BUTTON.setScaleX(2);
 		HARD_BUTTON.setScaleY(2);
-		EASY_BUTTON.setFont(NumberApp.getRegFont());
-		HARD_BUTTON.setFont(NumberApp.getRegFont());
+		EASY_BUTTON.setFont(App.getRegFont());
+		HARD_BUTTON.setFont(App.getRegFont());
 		setUpActions(); 
 		
 		// Set up Vbox and add children
@@ -85,7 +86,7 @@ public class MainMenu extends VBox {
 				NumberList.generateEasy();
 				
 				// Move to the question scene
-				NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
@@ -99,7 +100,7 @@ public class MainMenu extends VBox {
 				NumberList.generateHard();
 				
 				// Move to the question scene
-				NumberApp.getMainStage().setScene(new Scene(new QuestionAsk(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});

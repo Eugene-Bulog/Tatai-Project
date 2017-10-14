@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import main.App;
 import utility.BashProcess;
 import utility.MaoriNumbers;
 import utility.NumberList;
@@ -56,18 +57,18 @@ public class QuestionAsk extends VBox{
 	}
 
 	private void setUpGUI() {
-			setBackground(NumberApp.getPatternBackground());
+			setBackground(App.getPatternBackground());
 		
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));
-			_numberLabel.setFont(NumberApp.getRegFontLarge());
+			_numberLabel.setFont(App.getRegFontLarge());
 			_numberLabel.setTextFill(Color.web("#964B00"));
 			_numberLabel.setPadding(new Insets(-140, 0, 58, 0));
 			
 			// Label for currentscore
 			_currentScore = new Label("Current Score: " + NumberList.getSessionScore() + "/" + NumberList.getNumberAnswered());
 			_currentScore.setTextAlignment(TextAlignment.CENTER);
-			_currentScore.setFont(NumberApp.getRegFont());
+			_currentScore.setFont(App.getRegFont());
 			_currentScore.setScaleX(2);
 			_currentScore.setScaleY(2);
 			
@@ -75,20 +76,20 @@ public class QuestionAsk extends VBox{
 			_recordButton = new Button("Record Answer");
 			_recordButton.setScaleX(2);
 			_recordButton.setScaleY(2);
-			_recordButton.setFont(NumberApp.getRegFont());
+			_recordButton.setFont(App.getRegFont());
 			_cancelButton = new Button("Main Menu");
 			_cancelButton.setScaleX(2);
 			_cancelButton.setScaleY(2);
-			_cancelButton.setFont(NumberApp.getRegFont());
+			_cancelButton.setFont(App.getRegFont());
 			
 			_hearRecording = new Button("Hear Recording");
 			_hearRecording.setScaleX(2);
 			_hearRecording.setScaleY(2);
-			_hearRecording.setFont(NumberApp.getRegFont());
+			_hearRecording.setFont(App.getRegFont());
 			_submit = new Button("Submit");
 			_submit.setScaleX(2);
 			_submit.setScaleY(2);
-			_submit.setFont(NumberApp.getRegFont());
+			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
 			// Set up Vbox and add children
@@ -174,7 +175,7 @@ public class QuestionAsk extends VBox{
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				NumberApp.getMainStage().setScene(new Scene(new MainMenu(),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new NumberMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
@@ -234,12 +235,12 @@ public class QuestionAsk extends VBox{
 				if (_userAttempt.equals(MaoriNumbers.getMaoriPronunciation(_number))) { 
 					
 					// User gets question correct	
-					NumberApp.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+					App.getMainStage().setScene(new Scene(new QuestionResult(true,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
 					
 				} else {
 					
 					//User gets question wrong
-					NumberApp.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),NumberApp.APP_WIDTH,NumberApp.APP_HEIGHT));
+					App.getMainStage().setScene(new Scene(new QuestionResult(false,_secondAttempt,_number),App.APP_WIDTH,App.APP_HEIGHT));
 					
 				}
 			}

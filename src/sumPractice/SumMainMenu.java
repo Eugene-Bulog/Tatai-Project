@@ -10,9 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import main.App;
 import utility.EquationList;
 
-public class MainMenu extends VBox {
+public class SumMainMenu extends VBox {
 
 	// Initialize buttons
 	private final Button START_BUTTON;
@@ -26,18 +27,18 @@ public class MainMenu extends VBox {
 	/**
 	 * Constructor for MainMenu VBox object, sets up the layout and functions of this view
 	 */
-	public MainMenu() {
+	public SumMainMenu() {
 		
 		// Set up background image
-		setBackground(SumApp.getPatternBackground());
+		setBackground(App.getPatternBackground());
 		
 		// Set up title
 		TITLE = new Label("TATAI!");
-		TITLE.setFont(SumApp.getMaoriFont());
+		TITLE.setFont(App.getMaoriFont());
 		
 		// Set up accent for title
 		ACCENT = new Label("-     ");
-		ACCENT.setFont(SumApp.getMaoriFont());
+		ACCENT.setFont(App.getMaoriFont());
 		ACCENT.setTextFill(Color.web("#964B00"));
 		ACCENT.setPadding(new Insets(-200, 0, 0, 0));
 
@@ -47,13 +48,13 @@ public class MainMenu extends VBox {
 		SUBTITLE = new Label("Please select how many questions you wish to play: ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
-		SUBTITLE.setFont(SumApp.getRegFont());
+		SUBTITLE.setFont(App.getRegFont());
 		
 		// Set up buttons
 		START_BUTTON = new Button(" Start ");
 		START_BUTTON.setScaleX(2);
 		START_BUTTON.setScaleY(2);
-		START_BUTTON.setFont(SumApp.getRegFont());
+		START_BUTTON.setFont(App.getRegFont());
 		setUpActions(); 
 		
 		// Set up length spinner
@@ -89,7 +90,7 @@ public class MainMenu extends VBox {
 				EquationList.generateHard(LENGTH.getValue());
 				
 				// Move to the question scene
-				SumApp.getMainStage().setScene(new Scene(new QuestionAsk(),SumApp.APP_WIDTH,SumApp.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});

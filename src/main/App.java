@@ -27,6 +27,14 @@ public class App extends Application{
 	private static Image _tick;
 	private static Image _cross;
 	
+	/**
+	 * Getter method for the main stage of the application
+	 * @return: The main stage being used by the application
+	 */
+	public static Stage getMainStage() {
+		return _mainStage;
+	}
+	
 	
 	public static void main(String[] args) {
 		// Launches app
@@ -36,6 +44,7 @@ public class App extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		_mainStage = primaryStage;
+		loadAssets();
 		
 		_mainStage.setTitle("TĀTAI!");
 		_mainStage.setResizable(false);
@@ -131,7 +140,7 @@ public class App extends Application{
 			@Override
 			protected void succeeded() {
 				// Set up the main menu scene
-				//_mainStage.setScene(new Scene(new MainMenu(), APP_WIDTH,APP_HEIGHT));
+				_mainStage.setScene(new Scene(new numberPractice.NumberMainMenu(), APP_WIDTH,APP_HEIGHT));
 				// Make the stage visible
 				_mainStage.show();
 				_mainStage.sizeToScene();
