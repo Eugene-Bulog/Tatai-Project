@@ -1,4 +1,4 @@
-package numberPractice;
+package sumPractice;
 
 
 
@@ -15,7 +15,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class NumberApp extends Application{
+public class SumApp extends Application{
 	
 	// The main stage of the application
 	private static Stage _mainStage;
@@ -50,7 +50,7 @@ public class NumberApp extends Application{
 		loadAssets();
 		
 		// Set up main stage title
-		_mainStage.setTitle("TĀTAI! Number Practice");
+		_mainStage.setTitle("TĀTAI! Maths Practice");
 		_mainStage.setResizable(false);
 		
 		
@@ -118,7 +118,7 @@ public class NumberApp extends Application{
 					@Override
 					protected Void call() throws Exception {
 						// Load the Maori font
-						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/Tuamotu.ttf").toExternalForm(), 75);
+						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf"/*"/Resources/Tuamotu.ttf"*/).toExternalForm(), 75);
 						// Loads the regular font
 						_regularFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 14);
 						// Loads the background

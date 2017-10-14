@@ -29,6 +29,14 @@ public class EquationList {
 
 	
 	/**
+	 * Gets the number of questions answered
+	 * @return The number of questions answered so far
+	 */
+	public static int getNumberAnswered() {
+		return _answerLog.size();
+	}
+	
+	/**
 	 * Checks if there are any more questions remaining
 	 * @return true if no more questions to ask, false otherwise
 	 */
