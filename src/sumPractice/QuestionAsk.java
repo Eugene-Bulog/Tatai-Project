@@ -78,7 +78,7 @@ public class QuestionAsk extends VBox{
 			_recordButton.setScaleX(2);
 			_recordButton.setScaleY(2);
 			_recordButton.setFont(App.getRegFont());
-			_cancelButton = new Button("Main Menu");
+			_cancelButton = new Button("Maths Menu");
 			_cancelButton.setScaleX(2);
 			_cancelButton.setScaleY(2);
 			_cancelButton.setFont(App.getRegFont());

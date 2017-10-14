@@ -43,7 +43,7 @@ public class Summary extends VBox{
 		_score.setPadding(new Insets(-120, 0, -20, 0));
 		
 		// Set up buttons
-		_mainMenu = new Button("Main Menu");
+		_mainMenu = new Button("Number Menu");
 		_nextLevel = new Button("Next Level");
 		_playAgain = new Button("Play Again");
 		_mainMenu.setFont(App.getRegFont());

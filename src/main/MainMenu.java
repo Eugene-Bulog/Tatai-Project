@@ -75,25 +75,25 @@ public class MainMenu extends VBox{
 	 * Sets up action event handlers for the buttons of this pane
 	 */
 	private void setUpActions() {
-		// Event handler for EASY_BUTTON
+		// Event handler for number practice button
 		NUMBER_PRACTICE.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 			
-				// Move to the question scene
+				// Move to the number menu
 				App.getMainStage().setScene(new Scene(new numberPractice.NumberMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
 		
-		// Event handler for HARD_BUTTON
+		// Event handler for sum practice button
 		SUM_PRACTICE.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 				
-				// Move to the question scene
+				// Move to the sum menu
 				App.getMainStage().setScene(new Scene(new sumPractice.SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			

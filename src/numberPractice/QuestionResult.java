@@ -80,7 +80,7 @@ public class QuestionResult extends VBox{
 		_button.setFont(App.getRegFont());
 		_button.setScaleX(2);
 		_button.setScaleY(2);
-		_cancelButton = new Button("Main Menu");
+		_cancelButton = new Button("Number Menu");
 		_cancelButton.setScaleX(2);
 		_cancelButton.setScaleY(2);
 		_cancelButton.setFont(App.getRegFont());

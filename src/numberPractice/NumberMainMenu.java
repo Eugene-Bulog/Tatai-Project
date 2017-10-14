@@ -17,6 +17,7 @@ public class NumberMainMenu extends VBox {
 	// Initialize buttons
 	private final Button EASY_BUTTON;
 	private final Button HARD_BUTTON;
+	private final Button MAIN_MENU;
 	private final Label TITLE;
 	private final Label SUBTITLE;
 	private final Label ACCENT;
@@ -52,12 +53,16 @@ public class NumberMainMenu extends VBox {
 		// Set up buttons
 		EASY_BUTTON = new Button(" Practice 1-9 ");
 		HARD_BUTTON = new Button("Practice 1-99");
+		MAIN_MENU = new Button("Main Menu");
 		EASY_BUTTON.setScaleX(2);
 		EASY_BUTTON.setScaleY(2);
+		MAIN_MENU.setScaleX(2);
+		MAIN_MENU.setScaleY(2);
 		HARD_BUTTON.setScaleX(2);
 		HARD_BUTTON.setScaleY(2);
 		EASY_BUTTON.setFont(App.getRegFont());
 		HARD_BUTTON.setFont(App.getRegFont());
+		MAIN_MENU.setFont(App.getRegFont());
 		setUpActions(); 
 		
 		// Set up Vbox and add children
@@ -69,6 +74,7 @@ public class NumberMainMenu extends VBox {
 		getChildren().add(SUBTITLE);
 		getChildren().add(EASY_BUTTON);
 		getChildren().add(HARD_BUTTON);
+		getChildren().add(MAIN_MENU);
 		
 	}
 	
@@ -103,6 +109,15 @@ public class NumberMainMenu extends VBox {
 				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
+		});
+		
+		// Event handler for main menu button
+		MAIN_MENU.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				// Returns to main menu
+				App.getMainStage().setScene(new Scene(new main.MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
 		});
 	}
 	
