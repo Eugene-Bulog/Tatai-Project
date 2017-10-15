@@ -7,11 +7,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import main.App;
-import utility.EquationList;
 
 public class SumMainMenu extends VBox {
 
@@ -20,8 +18,8 @@ public class SumMainMenu extends VBox {
 	private final Label TITLE;
 	private final Label SUBTITLE;
 	private final Label ACCENT;
-	private final Spinner<Integer> LENGTH;
 	private final Button MAIN_MENU;
+	private final Button CUSTOM;
 
 	
 	
@@ -46,28 +44,26 @@ public class SumMainMenu extends VBox {
 
 		TITLE.setTextFill(Color.web("#964B00"));
 		TITLE.setPadding(new Insets(-200, 0, 0, 0));
-		SUBTITLE = new Label("Please select how many questions you wish to play: ");
+		SUBTITLE = new Label("Please select a mode: ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
 		SUBTITLE.setFont(App.getRegFont());
 		
 		// Set up buttons
-		START_BUTTON = new Button(" Start ");
+		START_BUTTON = new Button("Play New Questions");
 		START_BUTTON.setScaleX(2);
 		START_BUTTON.setScaleY(2);
 		START_BUTTON.setFont(App.getRegFont());
+		CUSTOM = new Button("Saved Questions");
+		CUSTOM.setScaleX(2);
+		CUSTOM.setScaleY(2);
+		CUSTOM.setFont(App.getRegFont());
 		MAIN_MENU = new Button("Main Menu");
 		MAIN_MENU.setScaleX(2);
 		MAIN_MENU.setScaleY(2);
 		MAIN_MENU.setFont(App.getRegFont());
 		setUpActions(); 
 		
-		// Set up length spinner
-		LENGTH = new Spinner<Integer>(1, 99, 5);
-		LENGTH.setEditable(true);
-		LENGTH.setScaleX(2);
-		LENGTH.setScaleY(2);
-		LENGTH.setMaxWidth(70);
 		
 		// Set up Vbox and add children
 		setAlignment(Pos.CENTER);
@@ -76,8 +72,8 @@ public class SumMainMenu extends VBox {
 		getChildren().add(ACCENT);
 		getChildren().add(TITLE);
 		getChildren().add(SUBTITLE);
-		getChildren().add(LENGTH);
 		getChildren().add(START_BUTTON);
+		getChildren().add(CUSTOM);
 		getChildren().add(MAIN_MENU);
 		
 	}
@@ -86,30 +82,36 @@ public class SumMainMenu extends VBox {
 	 * Sets up action event handlers for the buttons of this pane
 	 */
 	private void setUpActions() {
-		// Event handler for EASY_BUTTON
+		// Event handler for START_BUTTON
 		START_BUTTON.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 				
-				// Generate a list of easy questions
-				EquationList.generateHard(LENGTH.getValue());
-				
 				// Move to the question scene
-				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new StartNew(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
 		
 		
 		// Event handler for main menu button
-				MAIN_MENU.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent e) {
-						// Returns to main menu
-						App.getMainStage().setScene(new Scene(new main.MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
-					}
-				});
+		MAIN_MENU.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				// Returns to main menu
+				App.getMainStage().setScene(new Scene(new main.MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+		});
+		
+		// Event handler for saved questions button
+		CUSTOM.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent e) {
+				// Goes to saved questions menu
+				App.getMainStage().setScene(new Scene(new SavedQuestions(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+		});
 		
 	}
 	
