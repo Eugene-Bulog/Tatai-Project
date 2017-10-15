@@ -40,7 +40,7 @@ public class StartNew extends VBox{
 
 				TITLE.setTextFill(Color.web("#964B00"));
 				TITLE.setPadding(new Insets(-200, 0, 0, 0));
-				SUBTITLE = new Label("Please select how many questions you wish to play: ");
+				SUBTITLE = new Label("Please select how many questions you wish to play (1-25): ");
 				SUBTITLE.setScaleX(1.5);
 				SUBTITLE.setScaleY(1.5);
 				SUBTITLE.setFont(App.getRegFont());
@@ -57,8 +57,8 @@ public class StartNew extends VBox{
 				setUpActions(); 
 				
 				// Set up length spinner
-				LENGTH = new Spinner<Integer>(1, 99, 5);
-				LENGTH.setEditable(true);
+				LENGTH = new Spinner<Integer>(1, 25, 10);
+				LENGTH.setEditable(false);
 				LENGTH.setScaleX(2);
 				LENGTH.setScaleY(2);
 				LENGTH.setMaxWidth(70);
@@ -87,8 +87,10 @@ public class StartNew extends VBox{
 			@Override
 			public void handle(ActionEvent e) {
 				
-				// Generate a list of easy questions
+	
+				// Generate a list of hard questions
 				EquationList.generateHard(LENGTH.getValue());
+				
 				
 				// Move to the question scene
 				App.getMainStage().setScene(new Scene(new QuestionAsk(),App.APP_WIDTH,App.APP_HEIGHT));
@@ -105,6 +107,8 @@ public class StartNew extends VBox{
 				App.getMainStage().setScene(new Scene(new SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 		});
+		
+		
 		
 	}
 	
