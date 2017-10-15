@@ -21,6 +21,7 @@ public class SumMainMenu extends VBox {
 	private final Label SUBTITLE;
 	private final Label ACCENT;
 	private final Spinner<Integer> LENGTH;
+	private final Button MAIN_MENU;
 
 	
 	
@@ -55,6 +56,10 @@ public class SumMainMenu extends VBox {
 		START_BUTTON.setScaleX(2);
 		START_BUTTON.setScaleY(2);
 		START_BUTTON.setFont(App.getRegFont());
+		MAIN_MENU = new Button("Main Menu");
+		MAIN_MENU.setScaleX(2);
+		MAIN_MENU.setScaleY(2);
+		MAIN_MENU.setFont(App.getRegFont());
 		setUpActions(); 
 		
 		// Set up length spinner
@@ -73,6 +78,7 @@ public class SumMainMenu extends VBox {
 		getChildren().add(SUBTITLE);
 		getChildren().add(LENGTH);
 		getChildren().add(START_BUTTON);
+		getChildren().add(MAIN_MENU);
 		
 	}
 	
@@ -94,6 +100,17 @@ public class SumMainMenu extends VBox {
 			}
 			
 		});
+		
+		
+		// Event handler for main menu button
+				MAIN_MENU.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent e) {
+						// Returns to main menu
+						App.getMainStage().setScene(new Scene(new main.MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+					}
+				});
+		
 	}
 	
 }
