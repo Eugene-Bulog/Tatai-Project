@@ -22,6 +22,7 @@ public class App extends Application{
 	
 	private static Font _maoriFont;
 	private static Font _regularFont;
+	private static Font _regularFontMedium;
 	private static Font _regularFontLarge;
 	private static Background _patternBackground;
 	private static Image _tick;
@@ -67,6 +68,15 @@ public class App extends Application{
 	 */
 	public static Font getRegFont() {
 		return _regularFont;
+	}
+	
+	/**
+	 * Getter method for the main "regular font" to be used throughout the app.
+	 * Size 220, font name MyriadPro-Regular.ttf
+	 * @return the font object representing this font
+	 */
+	public static Font getRegFontMed() {
+		return _regularFontMedium;
 	}
 	
 	/**
@@ -118,12 +128,14 @@ public class App extends Application{
 				// Create a task object
 				return new Task<Void>() {
 
+
 					@Override
 					protected Void call() throws Exception {
 						// Load the Maori font
 						_maoriFont = Font.loadFont(this.getClass().getResource("/Resources/Tuamotu.ttf").toExternalForm(), 75);
 						// Loads the regular font
 						_regularFont = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 14);
+						_regularFontMedium = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 35);
 						_regularFontLarge = Font.loadFont(this.getClass().getResource("/Resources/MyriadPro-Regular.ttf").toExternalForm(), 90);
 						// Loads the background
 						_patternBackground = new Background(new BackgroundImage(new Image(this.getClass().getResource("/Resources/maoripattern.png").toExternalForm()

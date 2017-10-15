@@ -16,6 +16,8 @@ public class MainMenu extends VBox{
 	// Initialize buttons
 	private final Button NUMBER_PRACTICE;
 	private final Button SUM_PRACTICE;
+	private final Button HELP;
+	private final Button LEADERBOARD;
 	private final Label TITLE;
 	private final Label SUBTITLE;
 	private final Label ACCENT;
@@ -51,12 +53,25 @@ public class MainMenu extends VBox{
 		// Set up buttons
 		NUMBER_PRACTICE = new Button("Practice Numbers");
 		SUM_PRACTICE = new Button(" Practice Maths ");
+		
 		NUMBER_PRACTICE.setScaleX(2);
 		NUMBER_PRACTICE.setScaleY(2);
 		SUM_PRACTICE.setScaleX(2);
 		SUM_PRACTICE.setScaleY(2);
+		
 		NUMBER_PRACTICE.setFont(App.getRegFont());
 		SUM_PRACTICE.setFont(App.getRegFont());
+		
+
+		HELP = new Button("   Help   ");
+		LEADERBOARD = new Button("Leaderboards");
+		HELP.setScaleX(2);
+		HELP.setScaleY(2);
+		LEADERBOARD.setScaleX(2);
+		LEADERBOARD.setScaleY(2);
+		HELP.setFont(App.getRegFont());
+		LEADERBOARD.setFont(App.getRegFont());
+
 		setUpActions(); 
 		
 		// Set up Vbox and add children
@@ -68,6 +83,10 @@ public class MainMenu extends VBox{
 		getChildren().add(SUBTITLE);
 		getChildren().add(NUMBER_PRACTICE);
 		getChildren().add(SUM_PRACTICE);
+		getChildren().add(LEADERBOARD);
+		getChildren().add(HELP);
+
+
 		
 	}
 	
@@ -95,6 +114,18 @@ public class MainMenu extends VBox{
 				
 				// Move to the sum menu
 				App.getMainStage().setScene(new Scene(new sumPractice.SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+			
+		});
+		
+		// Event handler for help button
+		HELP.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				
+				// Move to help screen
+				App.getMainStage().setScene(new Scene(new HelpScreen(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
