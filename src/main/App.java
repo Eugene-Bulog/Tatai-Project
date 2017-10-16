@@ -27,6 +27,7 @@ public class App extends Application{
 	private static Background _patternBackground;
 	private static Image _tick;
 	private static Image _cross;
+	private static String _name;
 	
 	/**
 	 * Getter method for the main stage of the application
@@ -159,5 +160,22 @@ public class App extends Application{
 			}
 		};
 		service.start();
+	}
+
+	/**
+	 * Getter for username
+	 * @return name of user
+	 */
+	public static String getName() {
+		return _name;
+	}
+
+	
+	/**
+	 * Setter for username
+	 * @return name of user
+	 */
+	public static void setName(String _name) {
+		App._name = _name;
 	}
 }

@@ -78,8 +78,12 @@ public class Login extends VBox {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				// Goes to the main menu
-				App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+				// Checks that something has been entered
+				if (NAME.getText() != null && !NAME.getText().trim().isEmpty()) {
+					// Goes to the main menu
+					App.setName(NAME.getText());
+					App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+				}
 			}
 			
 		});
