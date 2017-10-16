@@ -152,7 +152,7 @@ public class App extends Application{
 			@Override
 			protected void succeeded() {
 				// Set up the main menu scene
-				_mainStage.setScene(new Scene(new MainMenu(), APP_WIDTH,APP_HEIGHT));
+				_mainStage.setScene(new Scene(new Login(), APP_WIDTH,APP_HEIGHT));
 				// Make the stage visible
 				_mainStage.show();
 				_mainStage.sizeToScene();
