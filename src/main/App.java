@@ -27,7 +27,7 @@ public class App extends Application{
 	private static Background _patternBackground;
 	private static Image _tick;
 	private static Image _cross;
-	private static String _name;
+	private static String _name = "Testuser 1";
 	
 	/**
 	 * Getter method for the main stage of the application
