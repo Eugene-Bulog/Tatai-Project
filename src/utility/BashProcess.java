@@ -93,7 +93,7 @@ public final class BashProcess {
 		return null;
 	}	
 	
-	@SuppressWarnings("unused")
+
 	public void hearRecording() {
 		
 		pb2 = new ProcessBuilder("bash", "-c", "aplay foo.wav");
