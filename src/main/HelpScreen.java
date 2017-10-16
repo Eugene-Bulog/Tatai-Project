@@ -49,7 +49,7 @@ public class HelpScreen extends VBox{
 		MAIN_MENU.setScaleY(2);
 		
 		INFO = new Text();
-		INFO.setText("Tatai is a math authroing aid blah blah blah\ninstructions etc etc\n");
+		INFO.setText("This page will be implemented by the final submission\n");
 		INFO.setFont(App.getRegFontMed());
 		INFO.setFill(Color.web("#964B00"));
 		setAlignment(Pos.CENTER);
