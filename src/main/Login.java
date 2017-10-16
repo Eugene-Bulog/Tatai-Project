@@ -80,8 +80,10 @@ public class Login extends VBox {
 			public void handle(ActionEvent arg0) {
 				// Checks that something has been entered
 				if (NAME.getText() != null && !NAME.getText().trim().isEmpty()) {
-					// Goes to the main menu
+					// Goes to the main menu & logs in
 					App.setName(NAME.getText());
+					utility.SaveData.initHighScores();
+					utility.SaveData.login();
 					App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 				}
 			}
