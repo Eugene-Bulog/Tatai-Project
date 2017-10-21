@@ -19,6 +19,8 @@ public class Login extends VBox {
 	private final Label SUBTITLE;
 	private final TextField NAME;
 	private final Button CONTINUE;
+	private final Label INVALID_NAME;
+
 	
 	public Login() {
 		
@@ -56,6 +58,13 @@ public class Login extends VBox {
 		CONTINUE.setFont(App.getRegFont());
 		setUpActions();
 		
+		
+		// Set up warning label for invalid name
+		INVALID_NAME = new Label("");
+		INVALID_NAME.setScaleX(1.5);
+		INVALID_NAME.setScaleY(1.5);
+		INVALID_NAME.setTextFill(Color.RED);
+
 		// Set up Vbox and add children
 		setAlignment(Pos.CENTER);
 		setSpacing(40);
@@ -64,6 +73,8 @@ public class Login extends VBox {
 		getChildren().add(SUBTITLE);
 		getChildren().add(NAME);
 		getChildren().add(CONTINUE);
+		getChildren().add(INVALID_NAME);
+
 		
 		
 	}
@@ -85,6 +96,10 @@ public class Login extends VBox {
 					utility.SaveData.initHighScores();
 					utility.SaveData.login();
 					App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+				} else {
+					
+					INVALID_NAME.setText("   Please enter a valid name!");
+					
 				}
 			}
 			
