@@ -52,7 +52,7 @@ public class MainMenu extends VBox{
 		
 		// Set up buttons
 		NUMBER_PRACTICE = new Button("Practice Numbers");
-		SUM_PRACTICE = new Button(" Practice Maths ");
+		SUM_PRACTICE = new Button("Play Maths Questions");
 		
 		NUMBER_PRACTICE.setScaleX(2);
 		NUMBER_PRACTICE.setScaleY(2);
@@ -81,8 +81,8 @@ public class MainMenu extends VBox{
 		getChildren().add(ACCENT);
 		getChildren().add(TITLE);
 		getChildren().add(SUBTITLE);
-		getChildren().add(NUMBER_PRACTICE);
 		getChildren().add(SUM_PRACTICE);
+		getChildren().add(NUMBER_PRACTICE);
 		getChildren().add(LEADERBOARD);
 		getChildren().add(HELP);
 

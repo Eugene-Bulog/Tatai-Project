@@ -188,7 +188,7 @@ public class SaveData{
 	@SuppressWarnings("serial")
 	private static class UserData implements Serializable{
 		/**
-		 * The inner class that contains the save data.
+		 * The inner class that contains the save data related to user scores.
 		 */
 		
 		// String: User
@@ -201,6 +201,7 @@ public class SaveData{
 		HashMap<String,Integer[]> _data = new HashMap<String,Integer[]>();
 		
 	}
+	
 	
 }
 
