@@ -16,12 +16,15 @@ public class SaveData{
 	 */
 	
 	private static UserData _userSaveInstance = null;
+	private static CustomLists _customListsInstance = null;
 	private static final Integer[] NEW_USER_VALS = {1,0,0,0,0,0};
 	
 	/**
-	 * Initializes userdata by either loading or creating a new instance
+	 * Initializes userdata & saved questions by either loading or creating the required objects
 	 */
-	public static void initHighScores() {
+	public static void initSave() {
+		// LOADING USER DATA
+		
 		// _instance already exists, returns it
 		if (_userSaveInstance == null) {
 			// If the ser file with userData exists, loads it as an object
@@ -41,7 +44,6 @@ public class SaveData{
 				}
 				catch (Exception e) {
 					// If a problem is encountered, creates a new instance
-					e.printStackTrace();
 					_userSaveInstance = new UserData();
 				}
 				
@@ -53,6 +55,35 @@ public class SaveData{
 		}
 		
 		
+		// Custom lists
+		// _instance already exists, returns it
+				if (_customListsInstance == null) {
+					// If the ser file with custom lists exists, loads it as an object
+					if (new File(SaveData.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString()
+							+ "CustomLists.ser").exists()) {
+						
+						// Tries to load in the custom lists
+						try {
+							
+							FileInputStream fIn2 = new FileInputStream(SaveData.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString()
+							+ "CustomLists.ser");
+							
+							ObjectInputStream oIn2 = new ObjectInputStream(fIn2);
+							_customListsInstance = (CustomLists)oIn2.readObject();
+							oIn2.close();
+							fIn2.close();
+						}
+						catch (Exception e) {
+							// If a problem is encountered, creates a new instance
+							_customListsInstance = new CustomLists();
+						}
+						
+					}
+					else {
+						// If the save location isn't found, creates a new instance
+						_customListsInstance = new CustomLists();
+					}
+				}
 		
 	}
 	
@@ -60,7 +91,7 @@ public class SaveData{
 	/**
 	 * Saves the current user data to a ser file at current directory/UserData.ser
 	 */
-	private static void save() {
+	private static void saveUserData() {
 		// Attempts to serialize _instance
 		try {
 	         FileOutputStream fileOut =
@@ -141,7 +172,7 @@ public class SaveData{
 		
 		// Save the edited data to the map in UserData, and save UserData
 		_userSaveInstance._data.put(main.App.getName(),currentData);
-		save();
+		saveUserData();
 		return returnBool;
 	}
 	
@@ -203,6 +234,9 @@ public class SaveData{
 	}
 	
 	
+
+	
+	@SuppressWarnings("serial")
 	private static class CustomLists implements Serializable {
 		/**
 		 * The inner class containing saved custom question lists
@@ -213,6 +247,43 @@ public class SaveData{
 		// where the first member is the question, and the second is the answer in
 		// string form
 		HashMap<String,String[][]> _lists = new HashMap<String,String[][]>();
+	}
+	
+	
+	/**
+	 * Saves the specified question list to file
+	 * @param listName The name to save the list under
+	 * @param questionList the list of questions (each question in String[] format)
+	 * @return false if a list of that name already exists, otherwise true
+	 */
+	public static boolean saveQuestionList(String listName,String[][] questionList) {
+		if (_customListsInstance._lists.containsKey(listName)) {
+			return false;
+		}
+		else {
+			_customListsInstance._lists.put(listName,questionList);
+			saveCustomLists();
+			return true;
+		}
+	}
+	
+	
+	/**
+	 * Saves the current custom lists to a ser file at current directory/UserData.ser
+	 */
+	private static void saveCustomLists() {
+		// Attempts to serialize _instance
+		try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream(SaveData.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString()
+						+ "CustomLists.ser");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(_customListsInstance);
+	         out.close();
+	         fileOut.close();
+	      }catch(Exception i) {
+	    	  // empty
+	      }
 	}
 	
 }

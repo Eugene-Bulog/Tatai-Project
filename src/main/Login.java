@@ -93,7 +93,7 @@ public class Login extends VBox {
 				if (NAME.getText() != null && NAME.getText().matches("[\\w ]*") && !NAME.getText().trim().isEmpty()) {
 					// Goes to the main menu & logs in
 					App.setName(NAME.getText());
-					utility.SaveData.initHighScores();
+					utility.SaveData.initSave();
 					utility.SaveData.login();
 					App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 				} else {
