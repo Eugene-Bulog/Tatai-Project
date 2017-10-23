@@ -15,7 +15,7 @@ public class SaveData{
 	 * This class is used for loading and saving user scores and data, primarily via serialization.
 	 */
 	
-	private static UserData _instance = null;
+	private static UserData _userSaveInstance = null;
 	private static final Integer[] NEW_USER_VALS = {1,0,0,0,0,0};
 	
 	/**
@@ -23,7 +23,7 @@ public class SaveData{
 	 */
 	public static void initHighScores() {
 		// _instance already exists, returns it
-		if (_instance == null) {
+		if (_userSaveInstance == null) {
 			// If the ser file with userData exists, loads it as an object
 			if (new File(SaveData.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString()
 					+ "UserData.ser").exists()) {
@@ -35,20 +35,20 @@ public class SaveData{
 					+ "UserData.ser");
 					
 					ObjectInputStream oIn = new ObjectInputStream(fIn);
-					_instance = (UserData)oIn.readObject();
+					_userSaveInstance = (UserData)oIn.readObject();
 					oIn.close();
 					fIn.close();
 				}
 				catch (Exception e) {
 					// If a problem is encountered, creates a new instance
 					e.printStackTrace();
-					_instance = new UserData();
+					_userSaveInstance = new UserData();
 				}
 				
 			}
 			else {
 				// If the save location isn't found, creates a new instance
-				_instance = new UserData();
+				_userSaveInstance = new UserData();
 			}
 		}
 		
@@ -67,7 +67,7 @@ public class SaveData{
 	         new FileOutputStream(SaveData.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString()
 						+ "UserData.ser");
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(_instance);
+	         out.writeObject(_userSaveInstance);
 	         out.close();
 	         fileOut.close();
 	      }catch(Exception i) {
@@ -81,8 +81,8 @@ public class SaveData{
 	 * and if it doesn't, creates the user
 	 */
 	public static void login() {
-		if (!_instance._data.containsKey(main.App.getName())) {
-			_instance._data.put(main.App.getName(), NEW_USER_VALS);
+		if (!_userSaveInstance._data.containsKey(main.App.getName())) {
+			_userSaveInstance._data.put(main.App.getName(), NEW_USER_VALS);
 		}
 	}
 	
@@ -96,7 +96,7 @@ public class SaveData{
 		boolean[] returnBool = {false,false};
 		
 		// Gets current values
-		Integer[] currentData = _instance._data.get(main.App.getName());
+		Integer[] currentData = _userSaveInstance._data.get(main.App.getName());
 		
 		// Adds score and number of questions for this session
 		currentData[1] += score;
@@ -140,7 +140,7 @@ public class SaveData{
 		
 		
 		// Save the edited data to the map in UserData, and save UserData
-		_instance._data.put(main.App.getName(),currentData);
+		_userSaveInstance._data.put(main.App.getName(),currentData);
 		save();
 		return returnBool;
 	}
@@ -150,7 +150,7 @@ public class SaveData{
 	 * @return 1 for easy, 2 for mid/medium, 3 for hard
 	 */
 	public static int getUserLevel() {
-		return _instance._data.get(App.getName())[0];
+		return _userSaveInstance._data.get(App.getName())[0];
 	}
 	
 	/**
@@ -159,8 +159,8 @@ public class SaveData{
 	 * @return the average score for question lists at the user's current level
 	 */
 	public static int getLevelAvg() {
-		int correct = _instance._data.get(App.getName())[1];
-		int answered = _instance._data.get(App.getName())[1];
+		int correct = _userSaveInstance._data.get(App.getName())[1];
+		int answered = _userSaveInstance._data.get(App.getName())[1];
 		return Math.round((float)correct / (float)answered * 100);
 	}
 	
@@ -168,21 +168,21 @@ public class SaveData{
 	 * @return The user's highscore on easy mode
 	 */
 	public static int getHSEasy() {
-		return _instance._data.get(App.getName())[3];
+		return _userSaveInstance._data.get(App.getName())[3];
 	}
 	
 	/**
 	 * @return The user's highscore on medium mode
 	 */
 	public static int getHSMid() {
-		return _instance._data.get(App.getName())[4];
+		return _userSaveInstance._data.get(App.getName())[4];
 	}
 	
 	/**
 	 * @return The user's highscore on hard mode
 	 */
 	public static int getHSHard() {
-		return _instance._data.get(App.getName())[5];
+		return _userSaveInstance._data.get(App.getName())[5];
 	}
 	
 	@SuppressWarnings("serial")
@@ -202,6 +202,18 @@ public class SaveData{
 		
 	}
 	
+	
+	private static class CustomLists implements Serializable {
+		/**
+		 * The inner class containing saved custom question lists
+		 */
+		
+		// Key: the name of the questionlist
+		// Value: the question list in the form of an array of string[] questions,
+		// where the first member is the question, and the second is the answer in
+		// string form
+		HashMap<String,String[][]> _lists = new HashMap<String,String[][]>();
+	}
 	
 }
 
