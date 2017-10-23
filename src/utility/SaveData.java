@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import main.App;
+
 public class SaveData{
 	/**
 	 * This class is used for loading and saving user scores and data, primarily via serialization.
@@ -143,6 +145,45 @@ public class SaveData{
 		return returnBool;
 	}
 	
+	/**
+	 * Gets the user's current level 
+	 * @return 1 for easy, 2 for mid/medium, 3 for hard
+	 */
+	public static int getUserLevel() {
+		return _instance._data.get(App.getName())[0];
+	}
+	
+	/**
+	 * Gets a rounded int of the average score for question lists
+	 * at the user's current level
+	 * @return the average score for question lists at the user's current level
+	 */
+	public static int getLevelAvg() {
+		int correct = _instance._data.get(App.getName())[1];
+		int answered = _instance._data.get(App.getName())[1];
+		return Math.round((float)correct / (float)answered * 100);
+	}
+	
+	/**
+	 * @return The user's highscore on easy mode
+	 */
+	public static int getHSEasy() {
+		return _instance._data.get(App.getName())[3];
+	}
+	
+	/**
+	 * @return The user's highscore on medium mode
+	 */
+	public static int getHSMid() {
+		return _instance._data.get(App.getName())[4];
+	}
+	
+	/**
+	 * @return The user's highscore on hard mode
+	 */
+	public static int getHSHard() {
+		return _instance._data.get(App.getName())[5];
+	}
 	
 	@SuppressWarnings("serial")
 	private static class UserData implements Serializable{

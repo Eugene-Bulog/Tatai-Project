@@ -64,7 +64,7 @@ public class MainMenu extends VBox{
 		
 
 		HELP = new Button("   Help   ");
-		LEADERBOARD = new Button("Leaderboards");
+		LEADERBOARD = new Button("Highscores");
 		HELP.setScaleX(2);
 		HELP.setScaleY(2);
 		LEADERBOARD.setScaleX(2);
@@ -126,6 +126,18 @@ public class MainMenu extends VBox{
 				
 				// Move to help screen
 				App.getMainStage().setScene(new Scene(new HelpScreen(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+			
+		});
+		
+		// Event handler for help button
+		LEADERBOARD.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				
+				// Move to help screen
+				App.getMainStage().setScene(new Scene(new Highscores(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});

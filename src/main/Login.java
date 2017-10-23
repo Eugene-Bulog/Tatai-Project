@@ -40,7 +40,7 @@ public class Login extends VBox {
 		TITLE.setFont(App.getMaoriFont());
 		TITLE.setTextFill(Color.web("#964B00"));
 		TITLE.setPadding(new Insets(-200, 0, 0, 0));
-		SUBTITLE = new Label("Please enter your name: ");
+		SUBTITLE = new Label("Please enter your name : ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
 		SUBTITLE.setFont(App.getRegFont());
@@ -90,7 +90,7 @@ public class Login extends VBox {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// Checks that something has been entered
-				if (NAME.getText() != null && !NAME.getText().trim().isEmpty()) {
+				if (NAME.getText() != null && NAME.getText().matches("[\\w ]*") && !NAME.getText().trim().isEmpty()) {
 					// Goes to the main menu & logs in
 					App.setName(NAME.getText());
 					utility.SaveData.initHighScores();
