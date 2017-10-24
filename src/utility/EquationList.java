@@ -121,6 +121,30 @@ public class EquationList {
 
 	}
 
+	
+	/**
+	 * Sets up the equationlist to play a custom list of questions
+	 * @param list the 2d string array representing the custom list
+	 */
+	protected static void loadCustom(String[][] list) {
+		// Clear to ensure question list & logs don't have any pre-existing members
+		_equations.clear();
+		_answers.clear();
+		_userAnswerLog.clear();
+		_answerLog.clear();
+		_questionLog.clear();
+
+		for (int i = 0; i < list.length; i++) {
+			// Get the question
+			String[] question = list[i];
+			
+			// Save this question and its answer
+			_equations.push(question[0]);
+			_answers.push(Integer.parseInt(question[1]));
+		}
+	}
+	
+	
 	/**
 	 * Generates a list of easy questions, no brackets, only addition / subtraction
 	 * @param length the number of questions to generate

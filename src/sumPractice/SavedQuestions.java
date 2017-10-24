@@ -12,15 +12,17 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import main.App;
+import utility.SaveData;
 
 public class SavedQuestions extends VBox{
 
 	
 	private final Button MATHS_MENU;
 	private final Button CREATE_NEW;
-	private final ObservableList<String> OBS_LIST;
+	private ObservableList<String> _obsList;
 	private final ListView<String> LIST_VIEW;
 	private final Button PLAY;
+	private final Button DELETE;
 	
 	
 	public SavedQuestions() {
@@ -28,9 +30,9 @@ public class SavedQuestions extends VBox{
 		setBackground(App.getPatternBackground());
 		
 		// Set up list of existing custom lists
-		OBS_LIST = FXCollections.observableArrayList(utility.SaveData.getCustomNames());
-		LIST_VIEW = new ListView<String>(OBS_LIST);
-		LIST_VIEW.setMaxHeight(350);
+		_obsList = FXCollections.observableArrayList(utility.SaveData.getCustomNames());
+		LIST_VIEW = new ListView<String>(_obsList);
+		LIST_VIEW.setMaxHeight(250);
 		
 		// Set cell factory to allow for setting font and alignment etc
 		LIST_VIEW.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
@@ -52,6 +54,12 @@ public class SavedQuestions extends VBox{
 
 		});
 		
+		
+		// delete selected button
+		DELETE = new Button("Delete Selected List");
+		DELETE.setScaleX(2);
+		DELETE.setScaleY(2);
+		DELETE.setFont(App.getRegFont());
 		
 		
 		// play selected button
@@ -77,7 +85,7 @@ public class SavedQuestions extends VBox{
 		
 		setAlignment(Pos.CENTER);
 		setSpacing(40);
-		getChildren().addAll(LIST_VIEW,PLAY,CREATE_NEW,MATHS_MENU);
+		getChildren().addAll(LIST_VIEW,PLAY,DELETE,CREATE_NEW,MATHS_MENU);
 		
 	}
 
@@ -109,6 +117,45 @@ public class SavedQuestions extends VBox{
 			}
 			
 		});
+		
+		
+		//Set up actions for play selected button
+		PLAY.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				// Gets the selected list name
+				String selected = LIST_VIEW.getSelectionModel().getSelectedItem();
+				
+				if (selected != null) {
+					// launches playing the selected list
+					SaveData.playCustomList(selected);
+					App.getMainStage().setScene(new Scene(new QuestionAsk(), App.APP_WIDTH, App.APP_HEIGHT));
+				}
+			}
+		
+		});
+		
+		
+		//Set up actions for play selected button
+		DELETE.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				// Gets the selected list name
+				String selected = LIST_VIEW.getSelectionModel().getSelectedItem();
+				
+				if (selected != null) {
+					// launches playing the selected list
+					SaveData.deleteCustom(selected);
+					_obsList.remove((String)(selected));
+				}
+			}
+			
+		});
+		
 	}
 	
 	

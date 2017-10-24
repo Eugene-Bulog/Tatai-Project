@@ -287,7 +287,28 @@ public class SaveData{
 	      }
 	}
 	
+	/**
+	 * Triggers EquationList to prepare the specified custom list
+	 * @param name the name of the list to play
+	 */
+	public static void playCustomList(String name) {
+		EquationList.loadCustom(_customListsInstance._lists.get(name));
+	}
 	
+	
+	/**
+	 * Deletes the specified custom list
+	 * @param name the name of the list to delete
+	 */
+	public static void deleteCustom(String name) {
+		_customListsInstance._lists.remove(name);
+		saveCustomLists();
+	}
+	
+	
+	/**
+	 * @return A string set of the names of existing creations
+	 */
 	public static Set<String> getCustomNames() {
 		return _customListsInstance._lists.keySet();
 	}
