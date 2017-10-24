@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Set;
 
 import main.App;
 
@@ -286,6 +287,10 @@ public class SaveData{
 	      }
 	}
 	
+	
+	public static Set<String> getCustomNames() {
+		return _customListsInstance._lists.keySet();
+	}
 }
 
 
