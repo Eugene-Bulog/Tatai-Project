@@ -98,7 +98,7 @@ public class Login extends VBox {
 					App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 				} else {
 					
-					INVALID_NAME.setText("   Please enter a valid name!");
+					INVALID_NAME.setText("   Please enter a valid name! Letters, numbers, and spaces only!");
 					
 				}
 			}
