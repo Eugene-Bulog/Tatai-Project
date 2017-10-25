@@ -11,6 +11,7 @@ public class EquationList {
 	private static List<String> _questionLog = new ArrayList<String>();
 	private static List<Integer> _answerLog = new ArrayList<Integer>();
 	private static List<Boolean> _userAnswerLog = new ArrayList<Boolean>();
+	private static boolean _isCustom = false;
 
 
 	/**
@@ -133,6 +134,7 @@ public class EquationList {
 		_userAnswerLog.clear();
 		_answerLog.clear();
 		_questionLog.clear();
+		_isCustom = true;
 
 		for (int i = 0; i < list.length; i++) {
 			// Get the question
@@ -156,6 +158,7 @@ public class EquationList {
 		_userAnswerLog.clear();
 		_answerLog.clear();
 		_questionLog.clear();
+		_isCustom = false;
 
 		for (int i = 0; i < length; i++) {
 			// Generate an easy question
@@ -180,6 +183,7 @@ public class EquationList {
 		_userAnswerLog.clear();
 		_answerLog.clear();
 		_questionLog.clear();
+		_isCustom = false;
 
 		for (int i = 0; i < length; i++) {
 			// Generate a mid-level question
@@ -206,6 +210,7 @@ public class EquationList {
 		_userAnswerLog.clear();
 		_answerLog.clear();
 		_questionLog.clear();
+		_isCustom = false;
 
 
 		for (int i = 0; i < length; i++) {
@@ -300,4 +305,14 @@ public class EquationList {
 		
 		return count;
 	}
+
+
+	/**
+	 * @return true if a custom list is being played, false otherwise
+	 */
+	public static boolean isCustom() {
+		return _isCustom;
+	}
+
+
 }
