@@ -270,12 +270,16 @@ public class CreateList extends VBox{
 					if (ans > 99 || ans < 1 || ans % 1 != 0) {
 						WARNING.setText("The answer must be a whole number between 1 and 99\n(the answer is currently " + ans + ")");
 					}
+					else if (_questionList.size() == 10) {
+						WARNING.setText("Maximum list length is 10!");
+					}
 					else {
 						// Adds question to list and returns to list view
 						String[] question = {num1 + " " + OPERATOR.getValue() + " " + num2, Integer.toString((int)ans)};
 						_questionList.add(question);
 						OBS_LIST.add(question[0] + " = " + question[1]);
 						getChildren().clear();
+						WARNING.setText("");
 						getChildren().addAll(QUESTION_VIEW,ADD,SAVE_CANCEL_BOX,WARNING);
 					}
 
@@ -293,6 +297,7 @@ public class CreateList extends VBox{
 
 			@Override
 			public void handle(ActionEvent arg0) {
+				WARNING.setText("");
 				getChildren().clear();
 				getChildren().addAll(QUESTION_VIEW,ADD,SAVE_CANCEL_BOX,WARNING);	          
 			}
