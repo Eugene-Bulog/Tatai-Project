@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import main.App;
 import utility.MaoriNumbers;
-import utility.NumberList;
+import utility.EquationList;
 
 public class Summary extends VBox{
 
@@ -24,7 +24,6 @@ public class Summary extends VBox{
 	// Buttons
 	private Button _mainMenu;
 	private Button _playAgain;
-	private Button _nextLevel;
 	
 	/**
 	 * Constructor for the summary VBox, sets up the summary list
@@ -37,24 +36,20 @@ public class Summary extends VBox{
 		_summaryBox = new SummaryBox();
 		
 		// Set up score label
-		_score = new Label(NumberList.getSessionScore() + "/10");
+		_score = new Label(EquationList.getSessionScore() + "/" + EquationList.getNumberAnswered());
 		_score.setFont(App.getMaoriFont());
 		_score.setTextFill(Color.web("#964B00"));
 		_score.setPadding(new Insets(-120, 0, -20, 0));
 		
 		// Set up buttons
 		_mainMenu = new Button("Maths Menu");
-		_nextLevel = new Button("Next Level");
 		_playAgain = new Button("Play Again");
 		_mainMenu.setFont(App.getRegFont());
-		_nextLevel.setFont(App.getRegFont());
 		_playAgain.setFont(App.getRegFont());
 		_playAgain.setScaleX(2);
 		_playAgain.setScaleY(2);
 		_mainMenu.setScaleX(2);
 		_mainMenu.setScaleY(2);
-		_nextLevel.setScaleX(2);
-		_nextLevel.setScaleY(2);
 		setUpActions();
 		
 		setSpacing(40);
@@ -67,24 +62,27 @@ public class Summary extends VBox{
 		getChildren().add(_playAgain);
 		getChildren().add(_mainMenu);
 		
-		// Only offers next level if score is 8 or more, and playing on easy
-		if (NumberList.getSessionScore() >= 8 && !NumberList.isHard()) {
-			getChildren().add(_nextLevel);
-		}
 	}
 	
 	private void setUpActions() {
 		_playAgain.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if (NumberList.isHard()) {
-					// Generate a list of hard questions
-					NumberList.generateHard();
-				}
-				else {
+				
+				// Check users level and create appropriate list
+				switch (utility.SaveData.getUserLevel()) {
+				case 1:
 					// Generate a list of easy questions
-					NumberList.generateEasy();
-					
+					EquationList.generateEasy(EquationList.getNumberAnswered());
+					break;
+				case 2:
+					// Generate a list of medium questions
+					EquationList.generateMid(EquationList.getNumberAnswered());
+					break;
+				case 3:
+					// Generate a list of hard questions
+					EquationList.generateHard(EquationList.getNumberAnswered());
+					break;
 				}
 
 				// Move to the question scene
@@ -103,16 +101,6 @@ public class Summary extends VBox{
 		});
 		
 		
-		_nextLevel.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				// Generate a list of hard questions
-				NumberList.generateHard();
-				// Move to the question scene
-				App.getMainStage().setScene(new Scene(new QuestionAsk(),
-						App.APP_WIDTH,App.APP_HEIGHT));
-			}
-		});
 	}
 	
 	private class SummaryBox extends VBox {
@@ -129,16 +117,16 @@ public class Summary extends VBox{
 			setAlignment(Pos.CENTER);
 			
 			// Defines _labels
-			_labels = new Label[10];
+			_labels = new Label[EquationList.getNumberAnswered()];
 			
 			// Loops through each question and alters the appropriate label
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < EquationList.getNumberAnswered(); i++) {
 				
 				// Sets the label text as the question, followed by if the answer was
 				// right or wrong
-				_labels[i] = new Label(NumberList.getNumberAt(i) + " (" + 
-						MaoriNumbers.getMaoriPronunciation(NumberList.getNumberAt(i)) + ")" + 
-						": " + NumberList.getAnswerAt(i));
+				_labels[i] = new Label(EquationList.getQuestionAt(i) + " = " + 
+						EquationList.getAnswerAt(i) + " (" + 
+						MaoriNumbers.getMaoriPronunciation(EquationList.getAnswerAt(i)) + ")");
 				
 				// Set scale and font
 				_labels[i].setScaleX(1.5);
@@ -147,7 +135,7 @@ public class Summary extends VBox{
 				
 				
 				// If the answer was Correct, colors the text green, otherwise red
-				if (NumberList.getAnswerAt(i).equals("Correct")) {
+				if (EquationList.getUserAnswerAt(i)) {
 					_labels[i].setTextFill(Color.web("#50B948"));
 					_labels[i].setGraphic(new ImageView(App.getTickIcon()));
 				}
