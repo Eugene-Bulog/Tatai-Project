@@ -1,10 +1,7 @@
 package numberPractice;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -342,6 +339,7 @@ public class QuestionAsk extends VBox{
 				// Stop the timeline once we have completed our progress.
 				if (pbar.getProgress() >= 1.0 ) {
 					_timeline.stop();
+					_pBarActivity.setText("Done!");
 				}
 				
 			}		

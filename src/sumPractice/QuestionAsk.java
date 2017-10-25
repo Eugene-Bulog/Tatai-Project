@@ -1,5 +1,7 @@
 package sumPractice;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -9,9 +11,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 import main.App;
 import utility.BashProcess;
 import utility.MaoriNumbers;
@@ -33,6 +37,11 @@ public class QuestionAsk extends VBox{
 	private Button _recordButton;
 	private Button _cancelButton;
 	
+	// All things concerning the progress bar
+	private ProgressBar _pBar;
+	private Label _pBarActivity;
+	private Timeline _timeline;
+		
 	// The user's attempted Maori pronunciation
 	private static String _userAttempt = "";
 	/**
@@ -93,6 +102,21 @@ public class QuestionAsk extends VBox{
 			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
+			// Set up the progress bar
+			_pBar = new ProgressBar(0);
+			_pBar.setScaleX(2);
+			_pBar.setScaleY(2);
+			_pBar.setMinSize(USE_PREF_SIZE, USE_PREF_SIZE);
+			_pBar.setPrefSize(100, 10);
+			_pBar.setStyle("-fx-accent: #964B00");
+
+			// Set up the label to indicate what the progress bar represents
+			_pBarActivity = new Label("");
+			_pBarActivity.setTextAlignment(TextAlignment.CENTER);
+			_pBarActivity.setPadding(new Insets(-30, 0, 0, 0));
+			_pBarActivity.setScaleX(1.5);
+			_pBarActivity.setScaleY(1.5);
+			
 			// Set up Vbox and add children
 			setAlignment(Pos.CENTER);
 			setSpacing(40);
@@ -122,6 +146,13 @@ public class QuestionAsk extends VBox{
 				_submit.setDisable(true);
 				_hearRecording.setDisable(true);
 				
+				_pBarActivity.setText("Recording...");
+				
+				getChildren().remove(_pBar);
+				getChildren().remove(_pBarActivity);
+				getChildren().add(_pBar);
+				getChildren().add(_pBarActivity);
+				
 				// Create service to run the bash process
 				Service<Void> service = new Service<Void>() {
 
@@ -149,6 +180,9 @@ public class QuestionAsk extends VBox{
 						if (!getChildren().contains(_submit)) {
 							getChildren().remove(_cancelButton);
 							getChildren().remove(_currentScore);
+							getChildren().remove(_pBar);
+							getChildren().remove(_pBarActivity);
+							
 							getChildren().add(_hearRecording);
 							getChildren().add(_submit);
 							getChildren().add(_cancelButton);
@@ -162,12 +196,14 @@ public class QuestionAsk extends VBox{
 						_hearRecording.setDisable(false);
 					}
 					
+					
 				};
 				
 				// Start service
 				service.start();
 			
-			
+				updateProgressBar(_pBar);
+
 			}
 
 		});
@@ -193,6 +229,13 @@ public class QuestionAsk extends VBox{
 				_cancelButton.setDisable(true);
 				_submit.setDisable(true);
 				_hearRecording.setDisable(true);
+				
+				_pBarActivity.setText("Playing...");
+
+				getChildren().remove(_pBar);
+				getChildren().remove(_pBarActivity);
+				getChildren().add(_pBar);
+				getChildren().add(_pBarActivity);
 				
 				Service<Void> service = new Service<Void>() {
 
@@ -223,6 +266,9 @@ public class QuestionAsk extends VBox{
 				};
 				
 				service.start();
+				
+				updateProgressBar(_pBar);
+				
 			}
 			
 		});
@@ -250,6 +296,39 @@ public class QuestionAsk extends VBox{
 		});
 	}
 	
+	
+	/**
+	 * This method is responsible for progressing the progress bar while the user is recording,
+	 * as well as when the user is playing back audio.
+	 * @param pbar The progress bar to be updated.
+	 */
+	private void updateProgressBar(ProgressBar pbar) {
+		
+		pbar.setProgress(0);
+		
+		_timeline = new Timeline();
+		_timeline.setCycleCount(Timeline.INDEFINITE);
+
+		// Every 0.01 seconds, the progress bar will be incremented.
+		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.01), new EventHandler<ActionEvent>(){
+
+			public void handle(ActionEvent e) {
+				
+				
+				pbar.setProgress(pbar.getProgress() + 0.0033333333);
+				
+				// Stop the timeline once we have completed our progress.
+				if (pbar.getProgress() >= 1.0 ) {
+					_timeline.stop();
+					_pBarActivity.setText("Done!");
+				}
+				
+			}		
+		});
+
+		_timeline.getKeyFrames().add(keyframe);
+		_timeline.playFromStart();
+	}
 	
 	/**
 	 * Getter method that returns the users attempted Maori pronunciation.
