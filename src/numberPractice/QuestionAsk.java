@@ -33,7 +33,8 @@ public class QuestionAsk extends VBox{
 	private Button _recordButton;
 	private Button _cancelButton;
 	
-	private ProgressBar pBar;
+	private ProgressBar _pBar;
+	private Label _pBarActivity;
 	
 	// The user's attempted Maori pronunciation
 	private static String _userAttempt = "";
@@ -95,11 +96,23 @@ public class QuestionAsk extends VBox{
 			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
-			pBar = new ProgressBar(0.5);
-			pBar.setScaleX(2);
-			pBar.setScaleY(2);
-			pBar.setDisable(true);
-			//pBar.setStyle("-fx-accent: #8f4401");
+			_pBar = new ProgressBar(0.5);
+			_pBar.setScaleX(2);
+			_pBar.setScaleY(2);
+			_pBar.setMinSize(USE_PREF_SIZE, USE_PREF_SIZE);
+			_pBar.setPrefSize(100, 10);
+			_pBar.setStyle("-fx-accent: #964B00");
+			_pBar.setDisable(true);
+			
+			_pBarActivity = new Label("");
+			_pBarActivity.setTextAlignment(TextAlignment.CENTER);
+			_pBarActivity.setPadding(new Insets(-30, 0, 0, 0));
+			_pBarActivity.setScaleX(1.5);
+			_pBarActivity.setScaleY(1.5);
+			
+			//_pBarActivity
+			
+
 			
 			
 			// Set up Vbox and add children
@@ -111,7 +124,8 @@ public class QuestionAsk extends VBox{
 			getChildren().add(_recordButton);
 			getChildren().add(_cancelButton);
 			getChildren().add(_currentScore);
-			getChildren().add(pBar);
+			
+
 
 	}
 	
@@ -132,6 +146,13 @@ public class QuestionAsk extends VBox{
 				_cancelButton.setDisable(true);
 				_submit.setDisable(true);
 				_hearRecording.setDisable(true);
+		
+				_pBarActivity.setText("Recording...");
+				
+				getChildren().remove(_pBar);
+				getChildren().remove(_pBarActivity);
+				getChildren().add(_pBar);
+				getChildren().add(_pBarActivity);
 				
 				// Create service to run the bash process
 				Service<Void> service = new Service<Void>() {
@@ -160,10 +181,22 @@ public class QuestionAsk extends VBox{
 						if (!getChildren().contains(_submit)) {
 							getChildren().remove(_cancelButton);
 							getChildren().remove(_currentScore);
+							getChildren().remove(_pBar);
+							getChildren().remove(_pBarActivity);
+
 							getChildren().add(_hearRecording);
 							getChildren().add(_submit);
 							getChildren().add(_cancelButton);
 							getChildren().add(_currentScore);
+							
+//							VBox temp = new VBox();
+//							temp.setMaxSize(500, 500);
+//							temp.setPrefSize(500, 500);
+//							temp.setAlignment(Pos.TOP_CENTER);
+//							temp.setSpacing(5);
+//							temp.getChildren().addAll(_pBar, _pBarActivity);
+//							System.out.println(temp.getLayoutX() + " " + temp.getWidth() + " " + temp.getHeight());
+//							getChildren().add(temp);
 						}
 						_numberLabel.setPadding(new Insets(-42, 0, 20, 0));
 						// Makes buttons clickable again
@@ -204,6 +237,12 @@ public class QuestionAsk extends VBox{
 				_cancelButton.setDisable(true);
 				_submit.setDisable(true);
 				_hearRecording.setDisable(true);
+				
+				getChildren().remove(_pBar);
+				getChildren().remove(_pBarActivity);
+				getChildren().add(_pBar);
+				_pBarActivity.setText("Playing...");
+				getChildren().add(_pBarActivity);
 				
 				Service<Void> service = new Service<Void>() {
 
