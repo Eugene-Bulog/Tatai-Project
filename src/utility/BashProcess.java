@@ -31,7 +31,7 @@ public final class BashProcess {
 	public String recordAndRetrieve() {
 			
 			Process recordingProcess = null;
-			pb = new ProcessBuilder("bash", "-c", "./GoSpeech");
+			pb = new ProcessBuilder("bash", "-c", "chmod +x GoSpeech; ./GoSpeech");
 			pb.directory(new File("HTK/MaoriNumbers"));
 			try {
 				recordingProcess = pb.start();
