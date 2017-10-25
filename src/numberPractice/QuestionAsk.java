@@ -1,5 +1,10 @@
 package numberPractice;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -13,6 +18,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Duration;
 import main.App;
 import utility.BashProcess;
 import utility.MaoriNumbers;
@@ -33,8 +39,10 @@ public class QuestionAsk extends VBox{
 	private Button _recordButton;
 	private Button _cancelButton;
 	
+	// All things concerning the progress bar
 	private ProgressBar _pBar;
 	private Label _pBarActivity;
+	private Timeline _timeline;
 	
 	// The user's attempted Maori pronunciation
 	private static String _userAttempt = "";
@@ -96,21 +104,20 @@ public class QuestionAsk extends VBox{
 			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
-			_pBar = new ProgressBar(0.5);
+			// Set up the progress bar
+			_pBar = new ProgressBar(0);
 			_pBar.setScaleX(2);
 			_pBar.setScaleY(2);
 			_pBar.setMinSize(USE_PREF_SIZE, USE_PREF_SIZE);
 			_pBar.setPrefSize(100, 10);
 			_pBar.setStyle("-fx-accent: #964B00");
-			_pBar.setDisable(true);
-			
+
+			// Set up the label to indicate what the progress bar represents
 			_pBarActivity = new Label("");
 			_pBarActivity.setTextAlignment(TextAlignment.CENTER);
 			_pBarActivity.setPadding(new Insets(-30, 0, 0, 0));
 			_pBarActivity.setScaleX(1.5);
 			_pBarActivity.setScaleY(1.5);
-			
-			//_pBarActivity
 			
 
 			
@@ -189,6 +196,9 @@ public class QuestionAsk extends VBox{
 							getChildren().add(_cancelButton);
 							getChildren().add(_currentScore);
 							
+							/**
+							 * This code here,  i just tried to fix the layout errors when adding the progressbar components, didnt work
+							 */
 //							VBox temp = new VBox();
 //							temp.setMaxSize(500, 500);
 //							temp.setPrefSize(500, 500);
@@ -210,9 +220,15 @@ public class QuestionAsk extends VBox{
 				
 				// Start service
 				service.start();
+				
+				updateProgressBar(_pBar);
 			
 			
 			}
+
+			
+
+			
 
 		});
 		
@@ -238,10 +254,11 @@ public class QuestionAsk extends VBox{
 				_submit.setDisable(true);
 				_hearRecording.setDisable(true);
 				
+				_pBarActivity.setText("Playing...");
+
 				getChildren().remove(_pBar);
 				getChildren().remove(_pBarActivity);
 				getChildren().add(_pBar);
-				_pBarActivity.setText("Playing...");
 				getChildren().add(_pBarActivity);
 				
 				Service<Void> service = new Service<Void>() {
@@ -273,6 +290,8 @@ public class QuestionAsk extends VBox{
 				};
 				
 				service.start();
+				
+				updateProgressBar(_pBar);
 			}
 			
 		});
@@ -300,7 +319,40 @@ public class QuestionAsk extends VBox{
 		});
 	}
 	
+	/**
+	 * This method is responsible for progressing the progress bar while the user is recording,
+	 * as well as when the user is playing back audio.
+	 * @param pbar The progress bar to be updated.
+	 */
+	private void updateProgressBar(ProgressBar pbar) {
+		
+		pbar.setProgress(0);
+		
+		_timeline = new Timeline();
+		_timeline.setCycleCount(Timeline.INDEFINITE);
+
+		// Every 0.01 seconds, the progress bar will be incremented.
+		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.01), new EventHandler<ActionEvent>(){
+
+			public void handle(ActionEvent e) {
+				
+				
+				pbar.setProgress(pbar.getProgress() + 0.0033333333);
+				
+				// Stop the timeline once we have completed our progress.
+				if (pbar.getProgress() >= 1.0 ) {
+					_timeline.stop();
+				}
+				
+			}		
+		});
+
+		_timeline.getKeyFrames().add(keyframe);
+		_timeline.playFromStart();
+	}
+		
 	
+
 	/**
 	 * Getter method that returns the users attempted Maori pronunciation.
 	 * 
