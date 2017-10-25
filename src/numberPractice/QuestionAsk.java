@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
@@ -31,6 +32,8 @@ public class QuestionAsk extends VBox{
 	private Button _submit;
 	private Button _recordButton;
 	private Button _cancelButton;
+	
+	private ProgressBar pBar;
 	
 	// The user's attempted Maori pronunciation
 	private static String _userAttempt = "";
@@ -92,6 +95,13 @@ public class QuestionAsk extends VBox{
 			_submit.setFont(App.getRegFont());
 			setUpAction();
 			
+			pBar = new ProgressBar(0.5);
+			pBar.setScaleX(2);
+			pBar.setScaleY(2);
+			pBar.setDisable(true);
+			//pBar.setStyle("-fx-accent: #8f4401");
+			
+			
 			// Set up Vbox and add children
 			setAlignment(Pos.CENTER);
 			setSpacing(40);
@@ -101,7 +111,10 @@ public class QuestionAsk extends VBox{
 			getChildren().add(_recordButton);
 			getChildren().add(_cancelButton);
 			getChildren().add(_currentScore);
+			getChildren().add(pBar);
+
 	}
+	
 	
 	/**
 	 * Sets up the event handler for the record button
