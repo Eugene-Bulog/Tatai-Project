@@ -20,6 +20,8 @@ public class Summary extends VBox{
 	// The label for score
 	private Label _score;
 	private SummaryBox _summaryBox;
+	private boolean[] _mileStones;
+	private Label _notification;
 	
 	// Buttons
 	private Button _mainMenu;
@@ -35,9 +37,42 @@ public class Summary extends VBox{
 		
 		_summaryBox = new SummaryBox();
 		
+		// Set up notification label & log score for saving
+		if (!utility.EquationList.isCustom()) {
+			_mileStones = utility.SaveData.logScore(utility.EquationList.getSessionScore(), 
+					utility.EquationList.getNumberAnswered());
+			
+			// highscore but same level
+			if (_mileStones[0] && !_mileStones[1]) {
+				_notification = new Label("Congratulations! You beat your highscore for this level!");
+			}
+			// level up but no highscore
+			else if (!_mileStones[0] && _mileStones[1]) {
+				_notification = new Label("Congratulations! You have moved up a skill level!");
+			}
+			// Highscore & level up
+			else if (_mileStones[0] && _mileStones[1]) {
+				_notification = new Label("Congratulations! You beat your highscore for this level\n"
+						+ "and moved up a skill level!");
+			}
+		}
+		else {
+			_notification = new Label("");
+		}
+		
+		_notification.setScaleX(2);
+		_notification.setScaleY(2);
+		_notification.setFont(App.getRegFont());
+		_notification.setTextFill(Color.RED);
+		_notification.setAlignment(Pos.CENTER);
+		_notification.setPadding(new Insets(-120, 0, -20, 0));
+		
+		
+		
+		
 		// Set up score label
 		_score = new Label(EquationList.getSessionScore() + "/" + EquationList.getNumberAnswered());
-		_score.setFont(App.getMaoriFont());
+		_score.setFont(App.getRegFontLarge());
 		_score.setTextFill(Color.web("#964B00"));
 		_score.setPadding(new Insets(-120, 0, -20, 0));
 		
@@ -57,6 +92,7 @@ public class Summary extends VBox{
 		
 		
 		// Adds the components to the VBox
+		getChildren().add(_notification);
 		getChildren().add(_score);
 		getChildren().add(_summaryBox);
 		getChildren().add(_playAgain);

@@ -120,7 +120,8 @@ public class SaveData{
 	
 	/**
 	 * Logs the specified user score. Handles saving high scores 7 checking if skill level should be advanced
-	 * @param scorePercent the percentage score of this session
+	 * @param score the score of this session
+	 * @param numberOfQuestions the number of questions for this session
 	 * @return a 2 member Boolean array, where the first member is true if this is a new high score for this
 	 * skill level, and the second member is true if the user has progressed to a new skill level
 	 */
