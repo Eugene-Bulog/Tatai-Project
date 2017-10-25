@@ -87,9 +87,21 @@ public class StartNew extends VBox{
 			@Override
 			public void handle(ActionEvent e) {
 				
-	
-				// Generate a list of hard questions
-				EquationList.generateHard(LENGTH.getValue());
+				// Check users level and create appropriate list
+				switch (utility.SaveData.getUserLevel()) {
+				case 1:
+					// Generate a list of easy questions
+					EquationList.generateEasy(LENGTH.getValue());
+					break;
+				case 2:
+					// Generate a list of medium questions
+					EquationList.generateMid(LENGTH.getValue());
+					break;
+				case 3:
+					// Generate a list of hard questions
+					EquationList.generateHard(LENGTH.getValue());
+					break;
+				}
 				
 				
 				// Move to the question scene
