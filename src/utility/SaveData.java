@@ -193,7 +193,7 @@ public class SaveData{
 	 */
 	public static int getLevelAvg() {
 		int correct = _userSaveInstance._data.get(App.getName())[1];
-		int answered = _userSaveInstance._data.get(App.getName())[1];
+		int answered = _userSaveInstance._data.get(App.getName())[2];
 		return Math.round((float)correct / (float)answered * 100);
 	}
 	
