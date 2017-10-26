@@ -38,26 +38,27 @@ public class Summary extends VBox{
 		_summaryBox = new SummaryBox();
 		
 		// Set up notification label & log score for saving
+		_notification = new Label("");
 		if (!utility.EquationList.isCustom()) {
 			_mileStones = utility.SaveData.logScore(utility.EquationList.getSessionScore(), 
 					utility.EquationList.getNumberAnswered());
 			
 			// highscore but same level
 			if (_mileStones[0] && !_mileStones[1]) {
-				_notification = new Label("Congratulations! You beat your highscore for this level!");
+				_notification.setText("Congratulations! You beat your highscore for this level!");
 			}
 			// level up but no highscore
 			else if (!_mileStones[0] && _mileStones[1]) {
-				_notification = new Label("Congratulations! You have moved up a skill level!");
+				_notification.setText("Congratulations! You have moved up a skill level!");
 			}
 			// Highscore & level up
 			else if (_mileStones[0] && _mileStones[1]) {
-				_notification = new Label("Congratulations! You beat your highscore for this level\n"
+				_notification.setText("Congratulations! You beat your highscore for this level\n"
 						+ "and moved up a skill level!");
 			}
 		}
 		else {
-			_notification = new Label("");
+			_notification.setText("");
 		}
 		
 		_notification.setScaleX(2);
