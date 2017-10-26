@@ -1,12 +1,17 @@
 package sumPractice;
 
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
@@ -24,6 +29,7 @@ public class QuestionResult extends VBox{
 	private Label _currentScore;
 	private boolean _secondAttempt;
 	private boolean _correct;
+	private Alert _confirmExit;
 	
 	public QuestionResult(boolean correct,boolean secondAttempt, String[] question) {
 		
@@ -31,6 +37,13 @@ public class QuestionResult extends VBox{
 		_question = question;
 		_secondAttempt = secondAttempt;
 		_correct = correct;
+		
+		
+		// confirmation dialog
+		_confirmExit = new Alert(AlertType.CONFIRMATION);
+		_confirmExit.setTitle("Confirm");
+		_confirmExit.setHeaderText("");
+		_confirmExit.setContentText("Are you sure you wish to return to the maths menu?");
 		
 		// Sets the label to the question value
 		_numberLabel = new Label(_question[0]);
@@ -150,7 +163,11 @@ public class QuestionResult extends VBox{
 
 					@Override
 					public void handle(ActionEvent arg0) {
-						App.getMainStage().setScene(new Scene(new SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+						// opens confirm dialog
+						Optional<ButtonType> result = _confirmExit.showAndWait();
+						if (result.get() == ButtonType.OK){
+							App.getMainStage().setScene(new Scene(new SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+						}
 					}
 					
 				});

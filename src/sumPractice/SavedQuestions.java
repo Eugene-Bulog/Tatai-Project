@@ -1,14 +1,19 @@
 package sumPractice;
 
+import java.util.Optional;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import main.App;
@@ -23,11 +28,19 @@ public class SavedQuestions extends VBox{
 	private final ListView<String> LIST_VIEW;
 	private final Button PLAY;
 	private final Button DELETE;
+	private final Alert CONFIRM_DELETE;
 	
 	
 	public SavedQuestions() {
 		// Set up background image
 		setBackground(App.getPatternBackground());
+		
+		
+		// confirmation dialog
+		CONFIRM_DELETE = new Alert(AlertType.CONFIRMATION);
+		CONFIRM_DELETE.setTitle("Confirm");
+		CONFIRM_DELETE.setHeaderText("");
+		CONFIRM_DELETE.setContentText("Are you sure you wish to delete this list?");
 		
 		// Set up list of existing custom lists
 		_obsList = FXCollections.observableArrayList(utility.SaveData.getCustomNames());
@@ -148,9 +161,14 @@ public class SavedQuestions extends VBox{
 				String selected = LIST_VIEW.getSelectionModel().getSelectedItem();
 				
 				if (selected != null) {
-					// launches playing the selected list
-					SaveData.deleteCustom(selected);
-					_obsList.remove((String)(selected));
+					// opens confirm dialog
+					Optional<ButtonType> result = CONFIRM_DELETE.showAndWait();
+					if (result.get() == ButtonType.OK){
+						// deletes the selected list
+						SaveData.deleteCustom(selected);
+						_obsList.remove((String)(selected));
+					}
+					
 				}
 			}
 			

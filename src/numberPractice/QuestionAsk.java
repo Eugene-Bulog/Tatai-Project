@@ -1,5 +1,7 @@
 package numberPractice;
 
+import java.util.Optional;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.concurrent.Service;
@@ -9,7 +11,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
@@ -27,6 +32,7 @@ public class QuestionAsk extends VBox{
 	private int _number;
 	private Label _numberLabel;
 	private Label _currentScore;
+	private Alert _confirmExit;
 	
 	// Whether or not this is the second attempt for this question
 	private boolean _secondAttempt;
@@ -68,6 +74,12 @@ public class QuestionAsk extends VBox{
 	private void setUpGUI() {
 			setBackground(App.getPatternBackground());
 		
+			// confirmation dialog
+			_confirmExit = new Alert(AlertType.CONFIRMATION);
+			_confirmExit.setTitle("Confirm");
+			_confirmExit.setHeaderText("");
+			_confirmExit.setContentText("Are you sure you wish to return to the number menu?");
+			
 			// Sets the label to the question value
 			_numberLabel = new Label(Integer.toString(_number));
 			_numberLabel.setFont(App.getRegFontLarge());
@@ -239,7 +251,13 @@ public class QuestionAsk extends VBox{
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				App.getMainStage().setScene(new Scene(new NumberMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+
+				// opens confirm dialog
+				Optional<ButtonType> result = _confirmExit.showAndWait();
+				if (result.get() == ButtonType.OK){
+					App.getMainStage().setScene(new Scene(new NumberMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+				}
+				
 			}
 			
 		});
