@@ -36,7 +36,7 @@ public class QuestionResult extends VBox{
 		_numberLabel = new Label(_question[0]);
 		_numberLabel.setFont(App.getRegFontLarge());
 		_numberLabel.setTextFill(Color.web("#964B00"));
-		_numberLabel.setPadding(new Insets(-140, 0, 0, 0));
+		_numberLabel.setPadding(new Insets(-230, 0, 0, 0));
 		
 		
 		// Label for currentscore
@@ -61,6 +61,7 @@ public class QuestionResult extends VBox{
 					// They got it wrong on their second attempt:
 					_resultLabel = new Label("Incorrect! You said '"+theirAttempt+"',\nbut the correct answer was '" + MaoriNumbers.getMaoriPronunciation(Integer.parseInt(_question[1]))+"'.");
 				}
+				_numberLabel.setPadding(new Insets(-210, 0, 0, 0));
 			} else {
 				_resultLabel = new Label("Incorrect! Try again!");
 			}

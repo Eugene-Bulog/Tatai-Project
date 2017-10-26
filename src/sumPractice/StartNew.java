@@ -35,12 +35,12 @@ public class StartNew extends VBox{
 				ACCENT = new Label("-     ");
 				ACCENT.setFont(App.getMaoriFont());
 				ACCENT.setTextFill(Color.web("#964B00"));
-				ACCENT.setPadding(new Insets(-200, 0, 0, 0));
+				ACCENT.setPadding(new Insets(-295, 0, 0, 0));
 
 
 				TITLE.setTextFill(Color.web("#964B00"));
-				TITLE.setPadding(new Insets(-200, 0, 0, 0));
-				SUBTITLE = new Label("Please select how many questions you wish to play (1-25): ");
+				TITLE.setPadding(new Insets(-246, 0, 0, 0));
+				SUBTITLE = new Label("Please select how many questions you wish to play (1-10): ");
 				SUBTITLE.setScaleX(1.5);
 				SUBTITLE.setScaleY(1.5);
 				SUBTITLE.setFont(App.getRegFont());

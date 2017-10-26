@@ -40,11 +40,11 @@ public class NumberMainMenu extends VBox {
 		ACCENT = new Label("-     ");
 		ACCENT.setFont(App.getMaoriFont());
 		ACCENT.setTextFill(Color.web("#964B00"));
-		ACCENT.setPadding(new Insets(-200, 0, 0, 0));
+		ACCENT.setPadding(new Insets(-292, 0, 0, 0));
 
 
 		TITLE.setTextFill(Color.web("#964B00"));
-		TITLE.setPadding(new Insets(-200, 0, 0, 0));
+		TITLE.setPadding(new Insets(-244, 0, 0, 0));
 		SUBTITLE = new Label("Please select a level: ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);

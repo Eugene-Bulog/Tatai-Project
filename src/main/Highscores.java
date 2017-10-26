@@ -95,7 +95,7 @@ public class Highscores extends VBox{
 			public void handle(ActionEvent e) {
 				
 				// Move to help screen
-				App.getMainStage().setScene(new Scene(new MainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new sumPractice.SumMainMenu(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});

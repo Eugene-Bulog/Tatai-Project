@@ -32,14 +32,14 @@ public class Login extends VBox {
 		ACCENT = new Label("-     ");
 		ACCENT.setFont(App.getMaoriFont());
 		ACCENT.setTextFill(Color.web("#964B00"));
-		ACCENT.setPadding(new Insets(-200, 0, 0, 0));
+		ACCENT.setPadding(new Insets(-307, 0, 0, 0));
 
 		
 		// Set up title and subtitle
 		TITLE = new Label("TATAI!");
 		TITLE.setFont(App.getMaoriFont());
 		TITLE.setTextFill(Color.web("#964B00"));
-		TITLE.setPadding(new Insets(-200, 0, 0, 0));
+		TITLE.setPadding(new Insets(-259, 0, 0, 0));
 		SUBTITLE = new Label("Please enter your name : ");
 		SUBTITLE.setScaleX(1.5);
 		SUBTITLE.setScaleY(1.5);
