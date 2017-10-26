@@ -82,7 +82,7 @@ public class QuestionAsk extends VBox{
 			_confirmExit = new Alert(AlertType.CONFIRMATION);
 			_confirmExit.setTitle("Confirm");
 			_confirmExit.setHeaderText("");
-			_confirmExit.setContentText("Are you sure you wish to return to the maths menu?");
+			_confirmExit.setContentText("Are you sure you wish to return to the maths menu? Your progress for this session will be lost.");
 			
 			// Sets the label to the question value
 			_numberLabel = new Label(_question[0]);
