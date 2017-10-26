@@ -108,6 +108,7 @@ public class QuestionAsk extends VBox{
 			_pBar.setMinSize(USE_PREF_SIZE, USE_PREF_SIZE);
 			_pBar.setPrefSize(100, 10);
 			_pBar.setStyle("-fx-accent: #964B00");
+			_pBar.setVisible(false);
 
 			// Set up the label to indicate what the progress bar represents
 			_pBarActivity = new Label("");
@@ -115,7 +116,7 @@ public class QuestionAsk extends VBox{
 			_pBarActivity.setPadding(new Insets(-30, 0, 0, 0));
 			_pBarActivity.setScaleX(1.5);
 			_pBarActivity.setScaleY(1.5);
-			
+			_pBarActivity.setVisible(false);
 
 			
 			
@@ -128,7 +129,8 @@ public class QuestionAsk extends VBox{
 			getChildren().add(_recordButton);
 			getChildren().add(_cancelButton);
 			getChildren().add(_currentScore);
-			
+			getChildren().add(_pBar);
+			getChildren().add(_pBarActivity);
 
 
 	}
@@ -152,11 +154,8 @@ public class QuestionAsk extends VBox{
 				_hearRecording.setDisable(true);
 		
 				_pBarActivity.setText("Recording...");
-				
-				getChildren().remove(_pBar);
-				getChildren().remove(_pBarActivity);
-				getChildren().add(_pBar);
-				getChildren().add(_pBarActivity);
+				_pBar.setVisible(true);
+				_pBarActivity.setVisible(true);
 				
 				// Create service to run the bash process
 				Service<Void> service = new Service<Void>() {
@@ -192,9 +191,15 @@ public class QuestionAsk extends VBox{
 							getChildren().add(_submit);
 							getChildren().add(_cancelButton);
 							getChildren().add(_currentScore);
-							
+							getChildren().add(_pBar);
+							getChildren().add(_pBarActivity);
+							_pBar.setVisible(false);
+							_pBarActivity.setVisible(false);
 							/**
 							 * This code here,  i just tried to fix the layout errors when adding the progressbar components, didnt work
+							 */
+							/*
+							 * I gotchu fam just changed visibility ;)
 							 */
 //							VBox temp = new VBox();
 //							temp.setMaxSize(500, 500);
@@ -253,10 +258,8 @@ public class QuestionAsk extends VBox{
 				
 				_pBarActivity.setText("Playing...");
 
-				getChildren().remove(_pBar);
-				getChildren().remove(_pBarActivity);
-				getChildren().add(_pBar);
-				getChildren().add(_pBarActivity);
+				_pBar.setVisible(true);
+				_pBarActivity.setVisible(true);
 				
 				Service<Void> service = new Service<Void>() {
 
@@ -340,6 +343,8 @@ public class QuestionAsk extends VBox{
 				if (pbar.getProgress() >= 1.0 ) {
 					_timeline.stop();
 					_pBarActivity.setText("Done!");
+					_pBar.setVisible(false);
+					_pBarActivity.setVisible(false);
 				}
 				
 			}		
