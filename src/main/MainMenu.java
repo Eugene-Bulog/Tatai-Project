@@ -17,10 +17,10 @@ public class MainMenu extends VBox{
 	private final Button NUMBER_PRACTICE;
 	private final Button SUM_PRACTICE;
 	private final Button HELP;
-	private final Button LEADERBOARD;
 	private final Label TITLE;
 	private final Label SUBTITLE;
 	private final Label ACCENT;
+	private final Button CHANGE_USER;
 
 	
 	
@@ -64,14 +64,16 @@ public class MainMenu extends VBox{
 		
 
 		HELP = new Button("   Help   ");
-		LEADERBOARD = new Button("Highscores");
 		HELP.setScaleX(2);
 		HELP.setScaleY(2);
-		LEADERBOARD.setScaleX(2);
-		LEADERBOARD.setScaleY(2);
 		HELP.setFont(App.getRegFont());
-		LEADERBOARD.setFont(App.getRegFont());
+		
 
+		CHANGE_USER = new Button("Change User");
+		CHANGE_USER.setScaleX(2);
+		CHANGE_USER.setScaleY(2);
+		CHANGE_USER.setFont(App.getRegFont());
+		
 		setUpActions(); 
 		
 		// Set up Vbox and add children
@@ -83,7 +85,7 @@ public class MainMenu extends VBox{
 		getChildren().add(SUBTITLE);
 		getChildren().add(SUM_PRACTICE);
 		getChildren().add(NUMBER_PRACTICE);
-		getChildren().add(LEADERBOARD);
+		getChildren().add(CHANGE_USER);
 		getChildren().add(HELP);
 
 
@@ -130,17 +132,19 @@ public class MainMenu extends VBox{
 			
 		});
 		
-		// Event handler for help button
-		LEADERBOARD.setOnAction(new EventHandler<ActionEvent>() {
+		
+		// Event handler for change user button
+		CHANGE_USER.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent e) {
 				
 				// Move to help screen
-				App.getMainStage().setScene(new Scene(new Highscores(),App.APP_WIDTH,App.APP_HEIGHT));
+				App.getMainStage().setScene(new Scene(new main.Login(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
 			
 		});
+
 	}
 	
 }

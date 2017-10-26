@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import main.App;
+import main.Highscores;
 
 public class SumMainMenu extends VBox {
 
@@ -20,6 +21,7 @@ public class SumMainMenu extends VBox {
 	private final Label ACCENT;
 	private final Button MAIN_MENU;
 	private final Button CUSTOM;
+	private final Button LEADERBOARD;
 
 	
 	
@@ -27,6 +29,12 @@ public class SumMainMenu extends VBox {
 	 * Constructor for MainMenu VBox object, sets up the layout and functions of this view
 	 */
 	public SumMainMenu() {
+		
+		// high scores button
+		LEADERBOARD = new Button("Highscores");
+		LEADERBOARD.setScaleX(2);
+		LEADERBOARD.setScaleY(2);
+		LEADERBOARD.setFont(App.getRegFont());
 		
 		// Set up background image
 		setBackground(App.getPatternBackground());
@@ -74,6 +82,7 @@ public class SumMainMenu extends VBox {
 		getChildren().add(SUBTITLE);
 		getChildren().add(START_BUTTON);
 		getChildren().add(CUSTOM);
+		getChildren().add(LEADERBOARD);
 		getChildren().add(MAIN_MENU);
 		
 	}
@@ -111,6 +120,18 @@ public class SumMainMenu extends VBox {
 				// Goes to saved questions menu
 				App.getMainStage().setScene(new Scene(new SavedQuestions(),App.APP_WIDTH,App.APP_HEIGHT));
 			}
+		});
+		
+		// Event handler for high scores button
+		LEADERBOARD.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				
+				// Move to help screen
+				App.getMainStage().setScene(new Scene(new Highscores(),App.APP_WIDTH,App.APP_HEIGHT));
+			}
+			
 		});
 		
 	}
