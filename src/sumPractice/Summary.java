@@ -95,7 +95,10 @@ public class Summary extends VBox{
 		getChildren().add(_notification);
 		getChildren().add(_score);
 		getChildren().add(_summaryBox);
-		getChildren().add(_playAgain);
+		if (!utility.EquationList.isCustom()) {
+			getChildren().add(_playAgain);
+		}
+
 		getChildren().add(_mainMenu);
 		
 	}
