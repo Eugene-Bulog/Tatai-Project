@@ -57,7 +57,7 @@ public class StartNew extends VBox{
 				setUpActions(); 
 				
 				// Set up length spinner
-				LENGTH = new Spinner<Integer>(1, 25, 10);
+				LENGTH = new Spinner<Integer>(1, 10, 10);
 				LENGTH.setEditable(false);
 				LENGTH.setScaleX(2);
 				LENGTH.setScaleY(2);

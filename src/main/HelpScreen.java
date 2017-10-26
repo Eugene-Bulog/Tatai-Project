@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 public class HelpScreen extends VBox{
 
@@ -17,7 +16,7 @@ public class HelpScreen extends VBox{
 	private final Label SUBTITLE;
 	private final Label ACCENT;
 	private final Button MAIN_MENU;
-	private final Text INFO;
+	private final Label INFO;
 
 	
 	public HelpScreen() {
@@ -39,17 +38,27 @@ public class HelpScreen extends VBox{
 
 		// Set up HELP subtitle
 		SUBTITLE  = new Label("HELP");
-		SUBTITLE.setFont(App.getRegFontLarge());
+		SUBTITLE.setFont(App.getRegFontMed());
 		SUBTITLE.setTextFill(Color.web("#964B00"));
 	
 		MAIN_MENU = new Button("Return to Main Menu");
 		MAIN_MENU.setScaleX(2);
 		MAIN_MENU.setScaleY(2);
 		
-		INFO = new Text();
-		INFO.setText("This page will be implemented by the final submission\n");
-		INFO.setFont(App.getRegFontMed());
-		INFO.setFill(Color.web("#964B00"));
+		INFO = new Label("");
+		INFO.setText("Tatai! allows users to practice both basic maths questions in Maori\n"
+				+ "as well as simple number pronounciation. When practicing numbers, simply click record,\n"
+				+ "and clearly say the number in Maori. \n"
+				+ "You may then choose to re-record your answer or hear the recording before submitting. \n"
+				+ "For maths questions, please say the answer to the question.");
+		INFO.setFont(App.getRegFont());
+		INFO.setScaleX(1.3);
+		INFO.setScaleY(1.3);
+		INFO.setTextFill(Color.web("#964B00"));
+		INFO.setAlignment(Pos.CENTER);
+		
+		
+		
 		setAlignment(Pos.CENTER);
 		setSpacing(40);
 		
