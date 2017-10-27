@@ -15,8 +15,6 @@ TO RUN THE PROGRAM:
 3. Run the jar from the terminal (using the command: java -jar ./Tatai\ Beta.jar)
 
 
-Please note:
-The help screen, custom & saved question lists, as well as leaderboards/high scores are not implemented yet 
-- (an exception will be thrown once the list of maths quesions is completed, because the high scores are not implemented yet)
+If you have any other queries, please refer to the supplied User Manual.
 
 
